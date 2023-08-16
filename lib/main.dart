@@ -149,15 +149,15 @@ class _NavBarPageState extends State<NavBarPage> {
           _currentPage = null;
           _currentPageName = tabs.keys.toList()[i];
         }),
-        backgroundColor: Colors.black,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Color(0x8AFFFFFF),
-        selectedBackgroundColor: Colors.black,
+        backgroundColor: Color(0x60000000),
+        selectedItemColor: FlutterFlowTheme.of(context).alternate,
+        unselectedItemColor: FlutterFlowTheme.of(context).primary,
+        selectedBackgroundColor: Colors.transparent,
         borderRadius: 8.0,
         itemBorderRadius: 8.0,
         margin: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
         padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-        width: MediaQuery.sizeOf(context).width * 0.95,
+        width: MediaQuery.sizeOf(context).width * 0.5,
         elevation: 0.0,
         items: [
           FloatingNavbarItem(
@@ -166,16 +166,10 @@ class _NavBarPageState extends State<NavBarPage> {
               children: [
                 Icon(
                   Icons.add_circle_outline_outlined,
-                  color: currentIndex == 0 ? Colors.white : Color(0x8AFFFFFF),
+                  color: currentIndex == 0
+                      ? FlutterFlowTheme.of(context).alternate
+                      : FlutterFlowTheme.of(context).primary,
                   size: 24.0,
-                ),
-                Text(
-                  'Post',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: currentIndex == 0 ? Colors.white : Color(0x8AFFFFFF),
-                    fontSize: 11.0,
-                  ),
                 ),
               ],
             ),
@@ -186,16 +180,10 @@ class _NavBarPageState extends State<NavBarPage> {
               children: [
                 Icon(
                   Icons.account_circle,
-                  color: currentIndex == 1 ? Colors.white : Color(0x8AFFFFFF),
+                  color: currentIndex == 1
+                      ? FlutterFlowTheme.of(context).alternate
+                      : FlutterFlowTheme.of(context).primary,
                   size: 24.0,
-                ),
-                Text(
-                  'Platforms',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: currentIndex == 1 ? Colors.white : Color(0x8AFFFFFF),
-                    fontSize: 11.0,
-                  ),
                 ),
               ],
             ),
@@ -206,16 +194,10 @@ class _NavBarPageState extends State<NavBarPage> {
               children: [
                 Icon(
                   Icons.schedule,
-                  color: currentIndex == 2 ? Colors.white : Color(0x8AFFFFFF),
+                  color: currentIndex == 2
+                      ? FlutterFlowTheme.of(context).alternate
+                      : FlutterFlowTheme.of(context).primary,
                   size: 24.0,
-                ),
-                Text(
-                  'Schedule',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: currentIndex == 2 ? Colors.white : Color(0x8AFFFFFF),
-                    fontSize: 11.0,
-                  ),
                 ),
               ],
             ),

@@ -6,3 +6,5 @@ export '/loginpage/loginpage_widget.dart' show LoginpageWidget;
 export '/success_p_o_s_t/success_p_o_s_t_widget.dart' show SuccessPOSTWidget;
 export '/settingspage/settingspage_widget.dart' show SettingspageWidget;
 export '/scheduled_posts/scheduled_posts_widget.dart' show ScheduledPostsWidget;
+export '/managesubscription/managesubscription_widget.dart'
+    show ManagesubscriptionWidget;

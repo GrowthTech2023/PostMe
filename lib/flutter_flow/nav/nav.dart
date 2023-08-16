@@ -136,6 +136,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'ScheduledPosts')
               : ScheduledPostsWidget(),
+        ),
+        FFRoute(
+          name: 'managesubscription',
+          path: '/managesubscription',
+          builder: (context, params) => ManagesubscriptionWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

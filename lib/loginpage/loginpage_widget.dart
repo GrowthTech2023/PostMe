@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/permissions_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -540,7 +541,7 @@ class _LoginpageWidgetState extends State<LoginpageWidget>
                                                   .fromSTEB(
                                                       0.0, 12.0, 0.0, 0.0),
                                               child: Text(
-                                                'Or use a social account to login',
+                                                'Or login with gmail',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .titleSmall
@@ -1064,6 +1065,37 @@ class _LoginpageWidgetState extends State<LoginpageWidget>
                                               return;
                                             }
 
+                                            if (_model.passwordCreateController
+                                                    .text ==
+                                                _model.passwordConfirmController
+                                                    .text) {
+                                              await requestPermission(
+                                                  photoLibraryPermission);
+                                              await requestPermission(
+                                                  notificationsPermission);
+                                              await requestPermission(
+                                                  calendarPermission);
+                                            } else {
+                                              await showDialog(
+                                                context: context,
+                                                builder: (alertDialogContext) {
+                                                  return AlertDialog(
+                                                    title: Text('Mismatch'),
+                                                    content: Text(
+                                                        'Passwords Do Not Match'),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext),
+                                                        child: Text('Ok'),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              );
+                                            }
+
                                             context.goNamedAuth(
                                               'Post',
                                               context.mounted,
@@ -1074,6 +1106,8 @@ class _LoginpageWidgetState extends State<LoginpageWidget>
                                                   transitionType:
                                                       PageTransitionType
                                                           .rightToLeft,
+                                                  duration: Duration(
+                                                      milliseconds: 1500),
                                                 ),
                                               },
                                             );
