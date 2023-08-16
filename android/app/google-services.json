@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "978165118544",
+    "project_id": "postme-390612",
+    "storage_bucket": "postme-390612.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:978165118544:android:fb1af8195a325d5acc4355",
+        "android_client_info": {
+          "package_name": "com.TechTonicLabsAI.postme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "978165118544-itb2hb6kpj5kcl9qn4cdvpfjd995qdg6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.TechTonicLabsAI.postme",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "978165118544-hje1b6kr557sdem81ig9n2ik9qm5udki.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDF-yQeqhwoBpaHoekBrz_1weMNl84YHes"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "978165118544-hje1b6kr557sdem81ig9n2ik9qm5udki.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "978165118544-p9tdt94net6autacrlr1nqansrihk3ku.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.postme.postme"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:978165118544:android:1ac3509304440277cc4355",
+        "android_client_info": {
+          "package_name": "com.postme.postme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "978165118544-k2b0c6i996l51i8sgfjoqoqpcph6vvsp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.postme.postme",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "978165118544-hje1b6kr557sdem81ig9n2ik9qm5udki.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDF-yQeqhwoBpaHoekBrz_1weMNl84YHes"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "978165118544-hje1b6kr557sdem81ig9n2ik9qm5udki.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "978165118544-p9tdt94net6autacrlr1nqansrihk3ku.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.postme.postme"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
