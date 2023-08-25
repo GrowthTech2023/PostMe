@@ -4,18 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'profilepic_copy_model.dart';
-export 'profilepic_copy_model.dart';
+import 'youtubeavatar_model.dart';
+export 'youtubeavatar_model.dart';
 
-class ProfilepicCopyWidget extends StatefulWidget {
-  const ProfilepicCopyWidget({Key? key}) : super(key: key);
+class YoutubeavatarWidget extends StatefulWidget {
+  const YoutubeavatarWidget({Key? key}) : super(key: key);
 
   @override
-  _ProfilepicCopyWidgetState createState() => _ProfilepicCopyWidgetState();
+  _YoutubeavatarWidgetState createState() => _YoutubeavatarWidgetState();
 }
 
-class _ProfilepicCopyWidgetState extends State<ProfilepicCopyWidget> {
-  late ProfilepicCopyModel _model;
+class _YoutubeavatarWidgetState extends State<YoutubeavatarWidget> {
+  late YoutubeavatarModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -26,7 +26,7 @@ class _ProfilepicCopyWidgetState extends State<ProfilepicCopyWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ProfilepicCopyModel());
+    _model = createModel(context, () => YoutubeavatarModel());
   }
 
   @override
@@ -38,39 +38,44 @@ class _ProfilepicCopyWidgetState extends State<ProfilepicCopyWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Align(
       alignment: AlignmentDirectional(0.0, 0.0),
       child: Container(
-        width: MediaQuery.sizeOf(context).width * 0.15,
-        height: MediaQuery.sizeOf(context).height * 0.069,
+        width: 120.0,
+        height: 120.0,
+        decoration: BoxDecoration(
+          color: Color(0x001A1A1A),
+        ),
         child: Stack(
           children: [
             Align(
-              alignment: AlignmentDirectional(-1.0, 0.0),
+              alignment: AlignmentDirectional(0.0, 0.0),
               child: Container(
-                width: 35.0,
-                height: 35.0,
+                width: 1120.0,
+                height: 1120.0,
                 clipBehavior: Clip.antiAlias,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                 ),
-                child: Image.asset(
-                  'assets/images/PostMe!_(3).png',
+                child: Image.network(
+                  'https://picsum.photos/seed/102/600',
                   fit: BoxFit.cover,
                 ),
               ),
             ),
             Align(
-              alignment: AlignmentDirectional(0.2, 0.6),
+              alignment: AlignmentDirectional(1.0, 1.0),
               child: Container(
-                width: 15.0,
-                height: 15.0,
+                width: 60.0,
+                height: 60.0,
                 clipBehavior: Clip.antiAlias,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                 ),
                 child: Image.asset(
-                  'assets/images/3689123.png',
+                  'assets/images/youtube_2.0.png',
                   fit: BoxFit.cover,
                 ),
               ),

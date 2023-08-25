@@ -36,6 +36,8 @@ class _SettingspageWidgetState extends State<SettingspageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Colors.white,

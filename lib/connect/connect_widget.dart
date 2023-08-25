@@ -1,4 +1,6 @@
-import '/components/accountconnected2_widget.dart';
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/components/accountconnected2/accountconnected2_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -45,6 +47,8 @@ class _ConnectWidgetState extends State<ConnectWidget>
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
       child: Scaffold(
@@ -130,6 +134,8 @@ class _ConnectWidgetState extends State<ConnectWidget>
                           labelStyle: FlutterFlowTheme.of(context).titleMedium,
                           unselectedLabelStyle: TextStyle(),
                           indicatorColor: FlutterFlowTheme.of(context).primary,
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              4.0, 4.0, 4.0, 4.0),
                           tabs: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -191,76 +197,166 @@ class _ConnectWidgetState extends State<ConnectWidget>
                             Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Align(
+                                              alignment: AlignmentDirectional(
+                                                  0.0, -1.0),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 20.0, 0.0, 0.0),
+                                                child: FFButtonWidget(
+                                                  onPressed: () async {
+                                                    if (!(currentUserDocument
+                                                                ?.connectedPlatforms
+                                                                ?.toList() ??
+                                                            [])
+                                                        .contains(
+                                                            true.toString())) {
+                                                      _model.apiResultTikTokConnect =
+                                                          await ConnectTiktokAccountCall
+                                                              .call();
+                                                      if ((_model
+                                                              .apiResultTikTokConnect
+                                                              ?.succeeded ??
+                                                          true)) {
+                                                        context.pushNamed(
+                                                            'Connect');
+                                                      }
+                                                    } else {
+                                                      await showDialog(
+                                                        context: context,
+                                                        builder:
+                                                            (alertDialogContext) {
+                                                          return AlertDialog(
+                                                            title: Text(
+                                                                'account connected'),
+                                                            content: Text(
+                                                                'Your acount has already been connected'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    Text('Ok'),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
+                                                      );
+                                                    }
+
+                                                    setState(() {});
+                                                  },
+                                                  text: 'Add Profile',
+                                                  icon: Icon(
+                                                    Icons.add,
+                                                    size: 15.0,
+                                                  ),
+                                                  options: FFButtonOptions(
+                                                    width: 182.0,
+                                                    height: 40.0,
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(24.0, 0.0,
+                                                                24.0, 0.0),
+                                                    iconPadding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 0.0),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                    textStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleSmall
+                                                            .override(
+                                                              fontFamily:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmallFamily,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondary,
+                                                              useGoogleFonts: GoogleFonts
+                                                                      .asMap()
+                                                                  .containsKey(
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .titleSmallFamily),
+                                                            ),
+                                                    elevation: 3.0,
+                                                    borderSide: BorderSide(
+                                                      color: Colors.transparent,
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 10.0, 0.0, 10.0),
+                                              child: wrapWithModel(
+                                                model: _model
+                                                    .accountconnected2Model1,
+                                                updateCallback: () =>
+                                                    setState(() {}),
+                                                child:
+                                                    Accountconnected2Widget(),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 10.0, 0.0, 10.0),
+                                          child: wrapWithModel(
+                                            model:
+                                                _model.accountconnected2Model2,
+                                            updateCallback: () =>
+                                                setState(() {}),
+                                            child: Accountconnected2Widget(),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 10.0, 0.0, 10.0),
+                                      child: wrapWithModel(
+                                        model: _model.accountconnected2Model3,
+                                        updateCallback: () => setState(() {}),
+                                        child: Accountconnected2Widget(),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 20.0, 0.0, 0.0),
-                                  child: FFButtonWidget(
-                                    onPressed: () {
-                                      print('Button pressed ...');
-                                    },
-                                    text: 'Add Profile',
-                                    icon: Icon(
-                                      Icons.add,
-                                      size: 15.0,
-                                    ),
-                                    options: FFButtonOptions(
-                                      width: 182.0,
-                                      height: 40.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          24.0, 0.0, 24.0, 0.0),
-                                      iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmallFamily,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondary,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmallFamily),
-                                          ),
-                                      elevation: 3.0,
-                                      borderSide: BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
+                                      0.0, 10.0, 0.0, 10.0),
+                                  child: wrapWithModel(
+                                    model: _model.accountconnected2Model4,
+                                    updateCallback: () => setState(() {}),
+                                    child: Accountconnected2Widget(),
                                   ),
                                 ),
-                                wrapWithModel(
-                                  model: _model.accountconnected2Model1,
-                                  updateCallback: () => setState(() {}),
-                                  child: Accountconnected2Widget(),
-                                ),
-                                wrapWithModel(
-                                  model: _model.accountconnected2Model2,
-                                  updateCallback: () => setState(() {}),
-                                  child: Accountconnected2Widget(),
-                                ),
-                                wrapWithModel(
-                                  model: _model.accountconnected2Model3,
-                                  updateCallback: () => setState(() {}),
-                                  child: Accountconnected2Widget(),
-                                ),
-                                wrapWithModel(
-                                  model: _model.accountconnected2Model4,
-                                  updateCallback: () => setState(() {}),
-                                  child: Accountconnected2Widget(),
-                                ),
-                                wrapWithModel(
-                                  model: _model.accountconnected2Model5,
-                                  updateCallback: () => setState(() {}),
-                                  child: Accountconnected2Widget(),
-                                ),
-                              ].divide(SizedBox(height: 17.0)),
+                              ],
                             ),
                             Column(
                               mainAxisSize: MainAxisSize.max,
@@ -270,7 +366,7 @@ class _ConnectWidgetState extends State<ConnectWidget>
                                       0.0, 20.0, 0.0, 0.0),
                                   child: FFButtonWidget(
                                     onPressed: () {
-                                      print('Button pressed ...');
+                                      print('connectInstagram pressed ...');
                                     },
                                     text: 'Add Profile',
                                     icon: Icon(
@@ -308,6 +404,11 @@ class _ConnectWidgetState extends State<ConnectWidget>
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                   ),
+                                ),
+                                wrapWithModel(
+                                  model: _model.accountconnected2Model5,
+                                  updateCallback: () => setState(() {}),
+                                  child: Accountconnected2Widget(),
                                 ),
                                 wrapWithModel(
                                   model: _model.accountconnected2Model6,
@@ -329,11 +430,6 @@ class _ConnectWidgetState extends State<ConnectWidget>
                                   updateCallback: () => setState(() {}),
                                   child: Accountconnected2Widget(),
                                 ),
-                                wrapWithModel(
-                                  model: _model.accountconnected2Model10,
-                                  updateCallback: () => setState(() {}),
-                                  child: Accountconnected2Widget(),
-                                ),
                               ].divide(SizedBox(height: 17.0)),
                             ),
                             Column(
@@ -344,7 +440,7 @@ class _ConnectWidgetState extends State<ConnectWidget>
                                       0.0, 20.0, 0.0, 0.0),
                                   child: FFButtonWidget(
                                     onPressed: () {
-                                      print('Button pressed ...');
+                                      print('connectYoutube pressed ...');
                                     },
                                     text: 'Add Profile',
                                     icon: Icon(
@@ -382,6 +478,11 @@ class _ConnectWidgetState extends State<ConnectWidget>
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                   ),
+                                ),
+                                wrapWithModel(
+                                  model: _model.accountconnected2Model10,
+                                  updateCallback: () => setState(() {}),
+                                  child: Accountconnected2Widget(),
                                 ),
                                 wrapWithModel(
                                   model: _model.accountconnected2Model11,
@@ -403,11 +504,6 @@ class _ConnectWidgetState extends State<ConnectWidget>
                                   updateCallback: () => setState(() {}),
                                   child: Accountconnected2Widget(),
                                 ),
-                                wrapWithModel(
-                                  model: _model.accountconnected2Model15,
-                                  updateCallback: () => setState(() {}),
-                                  child: Accountconnected2Widget(),
-                                ),
                               ].divide(SizedBox(height: 17.0)),
                             ),
                             Column(
@@ -418,7 +514,7 @@ class _ConnectWidgetState extends State<ConnectWidget>
                                       0.0, 20.0, 0.0, 0.0),
                                   child: FFButtonWidget(
                                     onPressed: () {
-                                      print('Button pressed ...');
+                                      print('connectFacebook pressed ...');
                                     },
                                     text: 'Add Profile',
                                     icon: Icon(
@@ -458,6 +554,11 @@ class _ConnectWidgetState extends State<ConnectWidget>
                                   ),
                                 ),
                                 wrapWithModel(
+                                  model: _model.accountconnected2Model15,
+                                  updateCallback: () => setState(() {}),
+                                  child: Accountconnected2Widget(),
+                                ),
+                                wrapWithModel(
                                   model: _model.accountconnected2Model16,
                                   updateCallback: () => setState(() {}),
                                   child: Accountconnected2Widget(),
@@ -474,11 +575,6 @@ class _ConnectWidgetState extends State<ConnectWidget>
                                 ),
                                 wrapWithModel(
                                   model: _model.accountconnected2Model19,
-                                  updateCallback: () => setState(() {}),
-                                  child: Accountconnected2Widget(),
-                                ),
-                                wrapWithModel(
-                                  model: _model.accountconnected2Model20,
                                   updateCallback: () => setState(() {}),
                                   child: Accountconnected2Widget(),
                                 ),

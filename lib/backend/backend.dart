@@ -9,6 +9,7 @@ import 'schema/users_record.dart';
 import 'schema/videos_record.dart';
 import 'schema/connected_accounts_record.dart';
 import 'schema/subscription_record.dart';
+import 'schema/imageposts_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart';
@@ -20,6 +21,7 @@ export 'schema/users_record.dart';
 export 'schema/videos_record.dart';
 export 'schema/connected_accounts_record.dart';
 export 'schema/subscription_record.dart';
+export 'schema/imageposts_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -167,6 +169,43 @@ Future<List<SubscriptionRecord>> querySubscriptionRecordOnce({
     queryCollectionOnce(
       SubscriptionRecord.collection,
       SubscriptionRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query ImagepostsRecords (as a Stream and as a Future).
+Future<int> queryImagepostsRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      ImagepostsRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<ImagepostsRecord>> queryImagepostsRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      ImagepostsRecord.collection,
+      ImagepostsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<ImagepostsRecord>> queryImagepostsRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      ImagepostsRecord.collection,
+      ImagepostsRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

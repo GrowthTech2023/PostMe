@@ -90,6 +90,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'Post',
           path: '/post',
+          requireAuth: true,
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'Post')
               : NavBarPage(
@@ -106,11 +107,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   initialPage: 'Connect',
                   page: ConnectWidget(),
                 ),
-        ),
-        FFRoute(
-          name: 'CaptionsPAGE',
-          path: '/captionsPAGE',
-          builder: (context, params) => CaptionsPAGEWidget(),
         ),
         FFRoute(
           name: 'loginpage',
@@ -131,18 +127,34 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => SettingspageWidget(),
         ),
         FFRoute(
-          name: 'ScheduledPosts',
-          path: '/scheduledPosts',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'ScheduledPosts')
-              : ScheduledPostsWidget(),
-        ),
-        FFRoute(
           name: 'managesubscription',
           path: '/managesubscription',
           builder: (context, params) => ManagesubscriptionWidget(),
+        ),
+        FFRoute(
+          name: 'PostCopy',
+          path: '/postCopy',
+          requireAuth: true,
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'PostCopy')
+              : NavBarPage(
+                  initialPage: 'PostCopy',
+                  page: PostCopyWidget(),
+                ),
+        ),
+        FFRoute(
+          name: 'Captions',
+          path: '/captions',
+          requireAuth: true,
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'Captions')
+              : NavBarPage(
+                  initialPage: 'Captions',
+                  page: CaptionsWidget(),
+                ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
+      observers: [routeObserver],
     );
 
 extension NavParamExtensions on Map<String, String?> {

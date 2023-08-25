@@ -1,3 +1,4 @@
+import 'package:provider/provider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +25,13 @@ void main() async {
 
   await FlutterFlowTheme.initialize();
 
-  runApp(MyApp());
+  final appState = FFAppState(); // Initialize FFAppState
+  await appState.initializePersistedState();
+
+  runApp(ChangeNotifierProvider(
+    create: (context) => appState,
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatefulWidget {
@@ -115,7 +122,7 @@ class NavBarPage extends StatefulWidget {
 
 /// This is the private State class that goes with NavBarPage.
 class _NavBarPageState extends State<NavBarPage> {
-  String _currentPageName = 'Post';
+  String _currentPageName = 'Connect';
   late Widget? _currentPage;
 
   @override
@@ -128,9 +135,10 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'Post': PostWidget(),
       'Connect': ConnectWidget(),
-      'ScheduledPosts': ScheduledPostsWidget(),
+      'Post': PostWidget(),
+      'PostCopy': PostCopyWidget(),
+      'Captions': CaptionsWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -143,66 +151,87 @@ class _NavBarPageState extends State<NavBarPage> {
               .removeViewPadding(removeBottom: true),
           child: _currentPage ?? tabs[_currentPageName]!),
       extendBody: true,
-      bottomNavigationBar: FloatingNavbar(
-        currentIndex: currentIndex,
-        onTap: (i) => setState(() {
-          _currentPage = null;
-          _currentPageName = tabs.keys.toList()[i];
-        }),
-        backgroundColor: Color(0x60000000),
-        selectedItemColor: FlutterFlowTheme.of(context).alternate,
-        unselectedItemColor: FlutterFlowTheme.of(context).primary,
-        selectedBackgroundColor: Colors.transparent,
-        borderRadius: 8.0,
-        itemBorderRadius: 8.0,
-        margin: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
-        padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-        width: MediaQuery.sizeOf(context).width * 0.5,
-        elevation: 0.0,
-        items: [
-          FloatingNavbarItem(
-            customWidget: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.add_circle_outline_outlined,
-                  color: currentIndex == 0
-                      ? FlutterFlowTheme.of(context).alternate
-                      : FlutterFlowTheme.of(context).primary,
-                  size: 24.0,
-                ),
-              ],
+      bottomNavigationBar: Visibility(
+        visible: responsiveVisibility(
+          context: context,
+          tabletLandscape: false,
+          desktop: false,
+        ),
+        child: FloatingNavbar(
+          currentIndex: currentIndex,
+          onTap: (i) => setState(() {
+            _currentPage = null;
+            _currentPageName = tabs.keys.toList()[i];
+          }),
+          backgroundColor: Colors.white,
+          selectedItemColor: FlutterFlowTheme.of(context).alternate,
+          unselectedItemColor: FlutterFlowTheme.of(context).primaryText,
+          selectedBackgroundColor: Colors.transparent,
+          borderRadius: 8.0,
+          itemBorderRadius: 8.0,
+          margin: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+          width: MediaQuery.sizeOf(context).width * 0.5,
+          elevation: 10.0,
+          items: [
+            FloatingNavbarItem(
+              customWidget: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.account_circle,
+                    color: currentIndex == 0
+                        ? FlutterFlowTheme.of(context).alternate
+                        : FlutterFlowTheme.of(context).primaryText,
+                    size: 24.0,
+                  ),
+                ],
+              ),
             ),
-          ),
-          FloatingNavbarItem(
-            customWidget: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.account_circle,
-                  color: currentIndex == 1
-                      ? FlutterFlowTheme.of(context).alternate
-                      : FlutterFlowTheme.of(context).primary,
-                  size: 24.0,
-                ),
-              ],
+            FloatingNavbarItem(
+              customWidget: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.add_circle_outline_outlined,
+                    color: currentIndex == 1
+                        ? FlutterFlowTheme.of(context).alternate
+                        : FlutterFlowTheme.of(context).primaryText,
+                    size: 24.0,
+                  ),
+                ],
+              ),
             ),
-          ),
-          FloatingNavbarItem(
-            customWidget: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.schedule,
-                  color: currentIndex == 2
-                      ? FlutterFlowTheme.of(context).alternate
-                      : FlutterFlowTheme.of(context).primary,
-                  size: 24.0,
-                ),
-              ],
+            FloatingNavbarItem(
+              customWidget: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.add_circle_outline_outlined,
+                    color: currentIndex == 2
+                        ? FlutterFlowTheme.of(context).alternate
+                        : FlutterFlowTheme.of(context).primaryText,
+                    size: 24.0,
+                  ),
+                ],
+              ),
             ),
-          )
-        ],
+            FloatingNavbarItem(
+              customWidget: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.add_circle_outline_outlined,
+                    color: currentIndex == 3
+                        ? FlutterFlowTheme.of(context).alternate
+                        : FlutterFlowTheme.of(context).primaryText,
+                    size: 24.0,
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

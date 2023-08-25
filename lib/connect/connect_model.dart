@@ -1,4 +1,6 @@
-import '/components/accountconnected2_widget.dart';
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/components/accountconnected2/accountconnected2_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -18,6 +20,8 @@ class ConnectModel extends FlutterFlowModel {
   int get tabBarCurrentIndex =>
       tabBarController != null ? tabBarController!.index : 0;
 
+  // Stores action output result for [Backend Call - API (connectTiktokAccount)] action in connectTiktok widget.
+  ApiCallResponse? apiResultTikTokConnect;
   // Model for Accountconnected2 component.
   late Accountconnected2Model accountconnected2Model1;
   // Model for Accountconnected2 component.
@@ -56,8 +60,6 @@ class ConnectModel extends FlutterFlowModel {
   late Accountconnected2Model accountconnected2Model18;
   // Model for Accountconnected2 component.
   late Accountconnected2Model accountconnected2Model19;
-  // Model for Accountconnected2 component.
-  late Accountconnected2Model accountconnected2Model20;
 
   /// Initialization and disposal methods.
 
@@ -100,8 +102,6 @@ class ConnectModel extends FlutterFlowModel {
         createModel(context, () => Accountconnected2Model());
     accountconnected2Model19 =
         createModel(context, () => Accountconnected2Model());
-    accountconnected2Model20 =
-        createModel(context, () => Accountconnected2Model());
   }
 
   void dispose() {
@@ -126,7 +126,6 @@ class ConnectModel extends FlutterFlowModel {
     accountconnected2Model17.dispose();
     accountconnected2Model18.dispose();
     accountconnected2Model19.dispose();
-    accountconnected2Model20.dispose();
   }
 
   /// Action blocks are added here.

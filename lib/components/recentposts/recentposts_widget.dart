@@ -5,18 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'notifications_model.dart';
-export 'notifications_model.dart';
+import 'recentposts_model.dart';
+export 'recentposts_model.dart';
 
-class NotificationsWidget extends StatefulWidget {
-  const NotificationsWidget({Key? key}) : super(key: key);
+class RecentpostsWidget extends StatefulWidget {
+  const RecentpostsWidget({Key? key}) : super(key: key);
 
   @override
-  _NotificationsWidgetState createState() => _NotificationsWidgetState();
+  _RecentpostsWidgetState createState() => _RecentpostsWidgetState();
 }
 
-class _NotificationsWidgetState extends State<NotificationsWidget> {
-  late NotificationsModel _model;
+class _RecentpostsWidgetState extends State<RecentpostsWidget> {
+  late RecentpostsModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -27,7 +27,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => NotificationsModel());
+    _model = createModel(context, () => RecentpostsModel());
   }
 
   @override
@@ -39,12 +39,14 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 8.0),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).secondaryBackground,
+          color: FlutterFlowTheme.of(context).primary,
           boxShadow: [
             BoxShadow(
               blurRadius: 3.0,
@@ -69,16 +71,18 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                     children: [
                       Text(
                         'How To Grow Your AI Company Part 1',
-                        style:
-                            FlutterFlowTheme.of(context).headlineSmall.override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .headlineSmallFamily,
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  fontSize: 14.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .headlineSmallFamily),
-                                ),
+                        style: FlutterFlowTheme.of(context)
+                            .headlineSmall
+                            .override(
+                              fontFamily: FlutterFlowTheme.of(context)
+                                  .headlineSmallFamily,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.bold,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .headlineSmallFamily),
+                            ),
                       ),
                       Align(
                         alignment: AlignmentDirectional(-1.0, 1.0),
@@ -88,7 +92,16 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                           child: AutoSizeText(
                             'Tik Tok',
                             textAlign: TextAlign.start,
-                            style: FlutterFlowTheme.of(context).labelMedium,
+                            style: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .labelMediumFamily,
+                                  fontWeight: FontWeight.w600,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .labelMediumFamily),
+                                ),
                           ),
                         ),
                       ),
@@ -102,9 +115,10 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .bodyMediumFamily,
-                                  color: FlutterFlowTheme.of(context).primary,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
                                   fontSize: 11.0,
-                                  fontWeight: FontWeight.normal,
+                                  fontWeight: FontWeight.bold,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
                                           .bodyMediumFamily),
@@ -120,9 +134,10 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
                                         .bodyMediumFamily,
-                                    color: FlutterFlowTheme.of(context).primary,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                     fontSize: 11.0,
-                                    fontWeight: FontWeight.normal,
+                                    fontWeight: FontWeight.bold,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)

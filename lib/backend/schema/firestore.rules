@@ -14,5 +14,12 @@ service cloud.firestore {
       allow write: if resource.data.user_id == /databases/$(database)/documents/users/$(request.auth.uid);
       allow delete: if resource.data.user_id == /databases/$(database)/documents/users/$(request.auth.uid);
     }
+
+    match /imageposts/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
   }
 }

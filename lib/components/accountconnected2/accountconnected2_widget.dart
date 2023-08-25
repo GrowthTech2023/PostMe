@@ -40,14 +40,19 @@ class _Accountconnected2WidgetState extends State<Accountconnected2Widget> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+    context.watch<FFAppState>();
+
+    return Align(
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Container(
         width: 305.0,
         height: 50.0,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
           borderRadius: BorderRadius.circular(10.0),
+          border: Border.all(
+            color: FlutterFlowTheme.of(context).primary,
+          ),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.max,

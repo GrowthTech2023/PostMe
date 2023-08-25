@@ -26,6 +26,51 @@ class GoogleOauthCall {
   }
 }
 
+class ConnectTiktokAccountCall {
+  static Future<ApiCallResponse> call() {
+    return ApiManager.instance.makeApiCall(
+      callName: 'connectTiktokAccount',
+      apiUrl:
+          'https://open-api.tiktok.com/platform/oauth/connect/?client_key=aw5xgjgqk86aj4ey&response_type=code&redirect_uri=https://postme-390612.firebaseapp.com/__/auth/handler&scope=user.info.basic',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      bodyType: BodyType.NONE,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: true,
+      cache: false,
+    );
+  }
+}
+
+class ExchangeCodeForTokenCall {
+  static Future<ApiCallResponse> call({
+    String? code = '',
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'exchangeCodeForToken',
+      apiUrl: 'https://open-api.tiktok.com/oauth/access_token/',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      params: {
+        'client_key': "aw5xgjgqk86aj4ey",
+        'client_secret': "oqiPFe5bExpZFA1HAxtc1cCjnlCw0nsF",
+        'code': code,
+        'grant_type': "authorization_code",
+        'redirect_uri': "https://postme-390612.firebaseapp.com/__/auth/handler",
+      },
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: true,
+      cache: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
