@@ -28,6 +28,8 @@ class _RecentpostsWidgetState extends State<RecentpostsWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => RecentpostsModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

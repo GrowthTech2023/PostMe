@@ -26,19 +26,20 @@
   
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="icon" href="PostMe_(3).png" sizes="any"/>
+  
 
   <!-- Open Graph & SEO tags -->
   <meta property="og:title" content="PostMe" />
-  <meta property="og:description" content="Built with FlutterFlow." />
-  <meta property="og:image" content="https://storage.googleapis.com/flutterflow-prod-hosting/og_splash_gradient.png" /> 
+  <meta property="og:description" content="The number 1 AI content posting tool." />
+  <meta property="og:image" content="/assets/assets/images/PostMe_(1).png" /> 
   <meta name="twitter:title" content="PostMe" />
-  <meta name="twitter:description" content="Built with FlutterFlow." />
-  <meta name="twitter:image" content="https://storage.googleapis.com/flutterflow-prod-hosting/og_splash_gradient.png" />
+  <meta name="twitter:description" content="The number 1 AI content posting tool." />
+  <meta name="twitter:image" content="/assets/assets/images/PostMe_(1).png" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <title> PostMe </title>
-  <meta name="description" content="Built with FlutterFlow." />
+  <meta name="description" content="The number 1 AI content posting tool." />
     
 
   <!-- Status Bar color in Safari browser (iOS) and PWA -->
@@ -66,7 +67,9 @@
         },
         onEntrypointLoaded: async function(engineInitializer) {
           // Initialize the Flutter engine
-          let appRunner = await engineInitializer.initializeEngine();
+          let appRunner = await engineInitializer.initializeEngine({
+            useColorEmoji: true,
+          });
           // Run the app
           await appRunner.runApp();
         }

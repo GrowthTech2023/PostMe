@@ -122,7 +122,7 @@ class FirebaseAuthManager extends AuthManager
       return null;
     }
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Password reset email sent')),
+      SnackBar(content: Text('Password reset email sent!')),
     );
   }
 

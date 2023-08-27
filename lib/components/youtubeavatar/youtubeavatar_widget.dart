@@ -27,6 +27,8 @@ class _YoutubeavatarWidgetState extends State<YoutubeavatarWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => YoutubeavatarModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

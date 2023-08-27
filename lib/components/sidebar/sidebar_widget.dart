@@ -54,6 +54,8 @@ class _SidebarWidgetState extends State<SidebarWidget>
           !anim.applyInitialState),
       this,
     );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

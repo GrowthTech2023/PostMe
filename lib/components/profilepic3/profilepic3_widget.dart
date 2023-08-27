@@ -27,6 +27,8 @@ class _Profilepic3WidgetState extends State<Profilepic3Widget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => Profilepic3Model());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

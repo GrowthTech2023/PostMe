@@ -29,6 +29,8 @@ class _Accountconnected2WidgetState extends State<Accountconnected2Widget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => Accountconnected2Model());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
