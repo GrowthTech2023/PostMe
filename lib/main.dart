@@ -137,7 +137,7 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'Connect': ConnectWidget(),
       'Post': PostWidget(),
-      'PostCopy': PostCopyWidget(),
+      'Schedule': ScheduleWidget(),
       'Captions': CaptionsWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);

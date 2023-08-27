@@ -6,5 +6,5 @@ export '/success_p_o_s_t/success_p_o_s_t_widget.dart' show SuccessPOSTWidget;
 export '/settingspage/settingspage_widget.dart' show SettingspageWidget;
 export '/managesubscription/managesubscription_widget.dart'
     show ManagesubscriptionWidget;
-export '/post_copy/post_copy_widget.dart' show PostCopyWidget;
+export '/schedule/schedule_widget.dart' show ScheduleWidget;
 export '/captions/captions_widget.dart' show CaptionsWidget;

@@ -1,4 +1,5 @@
 import '/components/recentposts/recentposts_widget.dart';
+import '/components/sidebar/sidebar_widget.dart';
 import '/flutter_flow/flutter_flow_calendar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -7,7 +8,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class PostCopyModel extends FlutterFlowModel {
+class ScheduleModel extends FlutterFlowModel {
   ///  Local state fields for this page.
 
   String uploadedvid = 'false';
@@ -15,6 +16,8 @@ class PostCopyModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Model for sidebar component.
+  late SidebarModel sidebarModel;
   // State field(s) for Calendar widget.
   DateTimeRange? calendarSelectedDay;
   // Model for recentposts component.
@@ -35,6 +38,7 @@ class PostCopyModel extends FlutterFlowModel {
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
+    sidebarModel = createModel(context, () => SidebarModel());
     calendarSelectedDay = DateTimeRange(
       start: DateTime.now().startOfDay,
       end: DateTime.now().endOfDay,
@@ -50,6 +54,7 @@ class PostCopyModel extends FlutterFlowModel {
 
   void dispose() {
     unfocusNode.dispose();
+    sidebarModel.dispose();
     recentpostsModel1.dispose();
     recentpostsModel2.dispose();
     recentpostsModel3.dispose();

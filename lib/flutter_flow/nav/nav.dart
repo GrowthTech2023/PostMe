@@ -132,14 +132,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => ManagesubscriptionWidget(),
         ),
         FFRoute(
-          name: 'PostCopy',
-          path: '/postCopy',
+          name: 'Schedule',
+          path: '/schedule',
           requireAuth: true,
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'PostCopy')
+              ? NavBarPage(initialPage: 'Schedule')
               : NavBarPage(
-                  initialPage: 'PostCopy',
-                  page: PostCopyWidget(),
+                  initialPage: 'Schedule',
+                  page: ScheduleWidget(),
                 ),
         ),
         FFRoute(
