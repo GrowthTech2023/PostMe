@@ -35,8 +35,8 @@ class PostModel extends FlutterFlowModel {
   String uploadedFileUrl1 = '';
 
   // State field(s) for DropDown widget.
-  String? dropDownValue1;
-  FormFieldController<String>? dropDownValueController1;
+  String? dropDownValue;
+  FormFieldController<String>? dropDownValueController;
   // State field(s) for Switch widget.
   bool? switchValue1;
   // State field(s) for Switch widget.
@@ -47,9 +47,6 @@ class PostModel extends FlutterFlowModel {
   bool? switchValue4;
   // Model for uploadphoto component.
   late UploadphotoModel uploadphotoModel1;
-  // State field(s) for DropDown widget.
-  String? dropDownValue2;
-  FormFieldController<String>? dropDownValueController2;
   // State field(s) for Switch widget.
   bool? switchValue5;
   // State field(s) for Switch widget.

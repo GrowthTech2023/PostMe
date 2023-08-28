@@ -525,13 +525,13 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                                             0.0),
                                                                         child: FlutterFlowDropDown<
                                                                             String>(
-                                                                          controller: _model.dropDownValueController1 ??=
+                                                                          controller: _model.dropDownValueController ??=
                                                                               FormFieldController<String>(null),
                                                                           options: [
                                                                             'Option 1'
                                                                           ],
                                                                           onChanged: (val) =>
-                                                                              setState(() => _model.dropDownValue1 = val),
+                                                                              setState(() => _model.dropDownValue = val),
                                                                           width:
                                                                               300.0,
                                                                           height:
@@ -982,67 +982,6 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                                 ),
                                                       ),
                                                     ),
-                                                  ),
-                                                  FlutterFlowDropDown<String>(
-                                                    controller: _model
-                                                            .dropDownValueController2 ??=
-                                                        FormFieldController<
-                                                            String>(null),
-                                                    options: ['Option 1'],
-                                                    onChanged: (val) =>
-                                                        setState(() => _model
-                                                                .dropDownValue2 =
-                                                            val),
-                                                    width: 300.0,
-                                                    height: 40.0,
-                                                    textStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primary,
-                                                              useGoogleFonts: GoogleFonts
-                                                                      .asMap()
-                                                                  .containsKey(
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMediumFamily),
-                                                            ),
-                                                    hintText:
-                                                        'Please select...',
-                                                    icon: Icon(
-                                                      Icons
-                                                          .keyboard_arrow_down_rounded,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      size: 24.0,
-                                                    ),
-                                                    fillColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primaryText,
-                                                    elevation: 2.0,
-                                                    borderColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary,
-                                                    borderWidth: 1.0,
-                                                    borderRadius: 40.0,
-                                                    margin:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(20.0, 4.0,
-                                                                20.0, 4.0),
-                                                    hidesUnderline: true,
-                                                    isSearchable: false,
-                                                    isMultiSelect: false,
                                                   ),
                                                   Padding(
                                                     padding:
