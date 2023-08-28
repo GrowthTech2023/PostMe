@@ -922,7 +922,7 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                           AlignmentDirectional(
                                                               0.0, 0.0),
                                                       child: Text(
-                                                        'Choose Profiles To Post To',
+                                                        'Choose When To Post',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)

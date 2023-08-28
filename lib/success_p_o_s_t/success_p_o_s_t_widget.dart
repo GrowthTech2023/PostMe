@@ -66,11 +66,12 @@ class _SuccessPOSTWidgetState extends State<SuccessPOSTWidget> {
                 },
               ),
               title: Text(
-                'Page Title',
+                'PostMe',
                 style: FlutterFlowTheme.of(context).headlineSmall.override(
                       fontFamily:
                           FlutterFlowTheme.of(context).headlineSmallFamily,
                       color: FlutterFlowTheme.of(context).primary,
+                      fontWeight: FontWeight.bold,
                       useGoogleFonts: GoogleFonts.asMap().containsKey(
                           FlutterFlowTheme.of(context).headlineSmallFamily),
                     ),
@@ -95,7 +96,7 @@ class _SuccessPOSTWidgetState extends State<SuccessPOSTWidget> {
                         Icon(
                           Icons.check_circle_rounded,
                           color: Color(0xFF4B986C),
-                          size: 160.0,
+                          size: 120.0,
                         ),
                       ],
                     ),
@@ -105,7 +106,7 @@ class _SuccessPOSTWidgetState extends State<SuccessPOSTWidget> {
                     style: FlutterFlowTheme.of(context).headlineMedium.override(
                           fontFamily: 'Inter Tight',
                           color: Color(0xFF4B986C),
-                          fontSize: 32.0,
+                          fontSize: 24.0,
                           fontWeight: FontWeight.w800,
                           useGoogleFonts: GoogleFonts.asMap().containsKey(
                               FlutterFlowTheme.of(context)
@@ -116,11 +117,11 @@ class _SuccessPOSTWidgetState extends State<SuccessPOSTWidget> {
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                     child: Text(
-                      'Your action was successful.',
+                      'Your post was successful.',
                       style: FlutterFlowTheme.of(context).titleSmall.override(
                             fontFamily: 'Inter Tight',
                             color: Color(0xFF4B986C),
-                            fontSize: 20.0,
+                            fontSize: 18.0,
                             fontWeight: FontWeight.w600,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).titleSmallFamily),
@@ -134,7 +135,7 @@ class _SuccessPOSTWidgetState extends State<SuccessPOSTWidget> {
                       onPressed: () {
                         print('Button pressed ...');
                       },
-                      text: 'Back to Homepage',
+                      text: 'Back to Upload',
                       options: FFButtonOptions(
                         width: 180.0,
                         height: 50.0,

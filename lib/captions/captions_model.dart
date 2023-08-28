@@ -60,6 +60,12 @@ class CaptionsModel extends FlutterFlowModel {
   bool? switchListTileValue3;
   // State field(s) for SwitchListTile widget.
   bool? switchListTileValue4;
+  // State field(s) for TextField widget.
+  TextEditingController? textController6;
+  String? Function(BuildContext, String?)? textController6Validator;
+  // State field(s) for TextField widget.
+  TextEditingController? textController7;
+  String? Function(BuildContext, String?)? textController7Validator;
 
   /// Initialization and disposal methods.
 
@@ -72,6 +78,8 @@ class CaptionsModel extends FlutterFlowModel {
     textController3?.dispose();
     textController4?.dispose();
     textController5?.dispose();
+    textController6?.dispose();
+    textController7?.dispose();
   }
 
   /// Action blocks are added here.

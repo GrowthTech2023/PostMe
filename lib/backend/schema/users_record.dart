@@ -56,6 +56,16 @@ class UsersRecord extends FirestoreRecord {
   String get password => _password ?? '';
   bool hasPassword() => _password != null;
 
+  // "pricingCategory" field.
+  String? _pricingCategory;
+  String get pricingCategory => _pricingCategory ?? '';
+  bool hasPricingCategory() => _pricingCategory != null;
+
+  // "profileSetsCount" field.
+  int? _profileSetsCount;
+  int get profileSetsCount => _profileSetsCount ?? 0;
+  bool hasProfileSetsCount() => _profileSetsCount != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -65,6 +75,8 @@ class UsersRecord extends FirestoreRecord {
     _phoneNumber = snapshotData['phone_number'] as String?;
     _connectedPlatforms = getDataList(snapshotData['connectedPlatforms']);
     _password = snapshotData['password'] as String?;
+    _pricingCategory = snapshotData['pricingCategory'] as String?;
+    _profileSetsCount = castToType<int>(snapshotData['profileSetsCount']);
   }
 
   static CollectionReference get collection =>
@@ -108,6 +120,8 @@ Map<String, dynamic> createUsersRecordData({
   DateTime? createdTime,
   String? phoneNumber,
   String? password,
+  String? pricingCategory,
+  int? profileSetsCount,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -118,6 +132,8 @@ Map<String, dynamic> createUsersRecordData({
       'created_time': createdTime,
       'phone_number': phoneNumber,
       'password': password,
+      'pricingCategory': pricingCategory,
+      'profileSetsCount': profileSetsCount,
     }.withoutNulls,
   );
 
@@ -137,7 +153,9 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.createdTime == e2?.createdTime &&
         e1?.phoneNumber == e2?.phoneNumber &&
         listEquality.equals(e1?.connectedPlatforms, e2?.connectedPlatforms) &&
-        e1?.password == e2?.password;
+        e1?.password == e2?.password &&
+        e1?.pricingCategory == e2?.pricingCategory &&
+        e1?.profileSetsCount == e2?.profileSetsCount;
   }
 
   @override
@@ -149,7 +167,9 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.createdTime,
         e?.phoneNumber,
         e?.connectedPlatforms,
-        e?.password
+        e?.password,
+        e?.pricingCategory,
+        e?.profileSetsCount
       ]);
 
   @override

@@ -71,6 +71,33 @@ class ExchangeCodeForTokenCall {
   }
 }
 
+class YoutubePostCall {
+  static Future<ApiCallResponse> call({
+    String? snippetTitle = '',
+    String? snippetDescription = '',
+    List<String>? snippetTagsList,
+    String? statusPrivacyStatus = 'public',
+  }) {
+    final snippetTags = _serializeList(snippetTagsList);
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'youtubePost',
+      apiUrl:
+          'https://www.googleapis.com/upload/youtube/v3/videos?part=snippet,status',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

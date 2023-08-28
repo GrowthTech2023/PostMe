@@ -121,7 +121,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                             return MediaQuery.sizeOf(context).width;
                           }
                         }(),
-                        1049.6,
+                        1010.0,
                       ),
                       height: MediaQuery.sizeOf(context).height * 1.0,
                       decoration: BoxDecoration(

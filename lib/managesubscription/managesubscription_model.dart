@@ -1,3 +1,4 @@
+import '/components/sidebar/sidebar_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -13,13 +14,18 @@ class ManagesubscriptionModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Model for sidebar component.
+  late SidebarModel sidebarModel;
 
   /// Initialization and disposal methods.
 
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    sidebarModel = createModel(context, () => SidebarModel());
+  }
 
   void dispose() {
     unfocusNode.dispose();
+    sidebarModel.dispose();
   }
 
   /// Action blocks are added here.
