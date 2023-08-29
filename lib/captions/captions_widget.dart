@@ -616,7 +616,7 @@ class _CaptionsWidgetState extends State<CaptionsWidget> {
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  110.0,
+                                                                  90.0,
                                                                   0.0,
                                                                   0.0,
                                                                   0.0),
@@ -652,7 +652,8 @@ class _CaptionsWidgetState extends State<CaptionsWidget> {
                                                         print(
                                                             'Button pressed ...');
                                                       },
-                                                      text: 'Generate with AI',
+                                                      text:
+                                                          'Re-Generate Captions',
                                                       icon: Icon(
                                                         Icons
                                                             .my_location_outlined,
@@ -1385,7 +1386,7 @@ class _CaptionsWidgetState extends State<CaptionsWidget> {
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  110.0,
+                                                                  90.0,
                                                                   0.0,
                                                                   0.0,
                                                                   0.0),
@@ -1421,7 +1422,8 @@ class _CaptionsWidgetState extends State<CaptionsWidget> {
                                                         print(
                                                             'Button pressed ...');
                                                       },
-                                                      text: 'Generate with AI',
+                                                      text:
+                                                          'Re-Generate Captions',
                                                       icon: Icon(
                                                         Icons
                                                             .my_location_outlined,
@@ -1811,7 +1813,7 @@ class _CaptionsWidgetState extends State<CaptionsWidget> {
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  110.0,
+                                                                  90.0,
                                                                   0.0,
                                                                   0.0,
                                                                   0.0),
@@ -1847,7 +1849,8 @@ class _CaptionsWidgetState extends State<CaptionsWidget> {
                                                         print(
                                                             'Button pressed ...');
                                                       },
-                                                      text: 'Generate with AI',
+                                                      text:
+                                                          'Re-Generate Captions',
                                                       icon: Icon(
                                                         Icons
                                                             .my_location_outlined,
@@ -2236,7 +2239,7 @@ class _CaptionsWidgetState extends State<CaptionsWidget> {
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  110.0,
+                                                                  90.0,
                                                                   0.0,
                                                                   0.0,
                                                                   0.0),
@@ -2272,7 +2275,8 @@ class _CaptionsWidgetState extends State<CaptionsWidget> {
                                                         print(
                                                             'Button pressed ...');
                                                       },
-                                                      text: 'Generate with AI',
+                                                      text:
+                                                          'Re-Generate Captions',
                                                       icon: Icon(
                                                         Icons.my_location,
                                                         size: 15.0,
@@ -3419,18 +3423,23 @@ class _CaptionsWidgetState extends State<CaptionsWidget> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-                                          Align(
-                                            alignment:
-                                                AlignmentDirectional(-1.0, 0.0),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      10.0, 0.0, 0.0, 0.0),
-                                              child: Text(
-                                                'Scheduled For',
-                                                textAlign: TextAlign.start,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    -1.0, 0.0),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          10.0, 0.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    'Scheduled For',
+                                                    textAlign: TextAlign.start,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
@@ -3450,8 +3459,66 @@ class _CaptionsWidgetState extends State<CaptionsWidget> {
                                                                           context)
                                                                       .bodyMediumFamily),
                                                         ),
+                                                  ),
+                                                ),
                                               ),
-                                            ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        20.0, 0.0, 0.0, 0.0),
+                                                child: FFButtonWidget(
+                                                  onPressed: () {
+                                                    print('Button pressed ...');
+                                                  },
+                                                  text: 'Pick Date',
+                                                  icon: Icon(
+                                                    Icons.calendar_month,
+                                                    size: 15.0,
+                                                  ),
+                                                  options: FFButtonOptions(
+                                                    height: 31.0,
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(24.0, 0.0,
+                                                                24.0, 0.0),
+                                                    iconPadding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 0.0),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                    textStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              'Inter Tight',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          fontSize: 13.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmallFamily),
+                                                        ),
+                                                    elevation: 3.0,
+                                                    borderSide: BorderSide(
+                                                      color: Colors.transparent,
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                           Divider(
                                             thickness: 1.0,

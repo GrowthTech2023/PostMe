@@ -63,6 +63,11 @@
     <string>PostMe needs access to send you post notifications</string>
 	<key>NSCalendarsUsageDescription</key>
     <string>PostMe needs access to Calendar</string>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>fetch</string>
+        <string>remote-notification</string>
+    </array>
 
 
 	<key>UILaunchStoryboardName</key>

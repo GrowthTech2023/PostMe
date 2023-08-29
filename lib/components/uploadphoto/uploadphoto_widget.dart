@@ -1,13 +1,10 @@
 import '/backend/firebase_storage/storage.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'uploadphoto_model.dart';
@@ -34,6 +31,7 @@ class _UploadphotoWidgetState extends State<UploadphotoWidget> {
     super.initState();
     _model = createModel(context, () => UploadphotoModel());
 
+    _model.textController ??= TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -59,7 +57,7 @@ class _UploadphotoWidgetState extends State<UploadphotoWidget> {
             Align(
               alignment: AlignmentDirectional(0.0, 0.0),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 20.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
                 child: Text(
                   'upload\nyour\nphotos',
                   textAlign: TextAlign.start,
@@ -67,7 +65,7 @@ class _UploadphotoWidgetState extends State<UploadphotoWidget> {
                         fontFamily:
                             FlutterFlowTheme.of(context).displayLargeFamily,
                         color: Colors.white,
-                        fontSize: 50.0,
+                        fontSize: 40.0,
                         fontWeight: FontWeight.bold,
                         useGoogleFonts: GoogleFonts.asMap().containsKey(
                             FlutterFlowTheme.of(context).displayLargeFamily),
@@ -185,7 +183,7 @@ class _UploadphotoWidgetState extends State<UploadphotoWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
               child: Container(
                 width: 357.0,
-                height: 100.0,
+                height: 93.0,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
@@ -242,7 +240,7 @@ class _UploadphotoWidgetState extends State<UploadphotoWidget> {
             Align(
               alignment: AlignmentDirectional(0.0, -1.0),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 20.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 10.0),
                 child: Text(
                   'Your uploaded media will be shown here',
                   textAlign: TextAlign.center,
@@ -258,240 +256,149 @@ class _UploadphotoWidgetState extends State<UploadphotoWidget> {
                 ),
               ),
             ),
-            if (responsiveVisibility(
-              context: context,
-              desktop: false,
-            ))
-              Container(
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
+              child: Container(
                 width: 372.0,
-                height: 186.0,
+                height: 152.0,
                 decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).primaryText,
+                  color: Colors.transparent,
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 alignment: AlignmentDirectional(0.0, 0.0),
-                child: Align(
-                  alignment: AlignmentDirectional(0.0, 0.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Align(
-                        alignment: AlignmentDirectional(0.0, -1.0),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 10.0, 0.0, 0.0),
-                          child: FlutterFlowDropDown<String>(
-                            controller: _model.dropDownValueController ??=
-                                FormFieldController<String>(null),
-                            options: ['Option 1'],
-                            onChanged: (val) =>
-                                setState(() => _model.dropDownValue = val),
-                            width: 300.0,
-                            height: 40.0,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily,
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily),
-                                ),
-                            hintText: 'Please select...',
-                            icon: Icon(
-                              Icons.keyboard_arrow_down_rounded,
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Align(
+                      alignment: AlignmentDirectional(-1.0, -1.0),
+                      child: Text(
+                        'Type in what type of captions \nyou want generated',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
                               color: FlutterFlowTheme.of(context).primary,
-                              size: 24.0,
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily),
                             ),
-                            fillColor: FlutterFlowTheme.of(context).primaryText,
-                            elevation: 2.0,
-                            borderColor: FlutterFlowTheme.of(context).primary,
-                            borderWidth: 1.0,
-                            borderRadius: 40.0,
-                            margin: EdgeInsetsDirectional.fromSTEB(
-                                20.0, 4.0, 20.0, 4.0),
-                            hidesUnderline: true,
-                            isSearchable: false,
-                            isMultiSelect: false,
-                          ),
-                        ),
                       ),
-                      Align(
-                        alignment: AlignmentDirectional(0.0, 0.0),
-                        child: Text(
-                          'Choose Profile Set then choose profiles to post to',
-                          textAlign: TextAlign.start,
-                          style: FlutterFlowTheme.of(context)
-                              .bodySmall
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodySmallFamily,
-                                color:
-                                    FlutterFlowTheme.of(context).primaryBtnText,
-                                fontWeight: FontWeight.w600,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodySmallFamily),
-                              ),
-                        ),
+                    ),
+                    Container(
+                      width: 380.0,
+                      height: 105.0,
+                      decoration: BoxDecoration(
+                        color: Color(0x001A1A1A),
                       ),
-                      Row(
+                      child: Column(
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container(
-                            width: 96.0,
-                            height: 40.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context).primary,
-                              borderRadius: BorderRadius.circular(40.0),
-                            ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.tiktok_sharp,
-                                  color: FlutterFlowTheme.of(context).secondary,
-                                  size: 20.0,
-                                ),
-                                Switch.adaptive(
-                                  value: _model.switchValue1 ??= true,
-                                  onChanged: (newValue) async {
-                                    setState(
-                                        () => _model.switchValue1 = newValue!);
-                                  },
-                                  activeTrackColor:
-                                      FlutterFlowTheme.of(context).success,
-                                  inactiveTrackColor:
-                                      FlutterFlowTheme.of(context).error,
-                                  inactiveThumbColor:
-                                      FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                ),
-                              ],
+                          Align(
+                            alignment: AlignmentDirectional(0.0, 0.0),
+                            child: Text(
+                              'Generate me a caption about why Lebron James is better than Michael Jordan, Stephen A Smith voice, 150 characters, 5 relevant hashtags, Chinese',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
+                                    color: Color(0x52FFFFFF),
+                                    fontSize: 12.0,
+                                    fontWeight: FontWeight.w600,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyMediumFamily),
+                                  ),
                             ),
                           ),
-                          Container(
-                            width: 96.0,
-                            height: 40.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context).primary,
-                              borderRadius: BorderRadius.circular(40.0),
-                            ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                FaIcon(
-                                  FontAwesomeIcons.instagram,
-                                  color: FlutterFlowTheme.of(context).secondary,
-                                  size: 20.0,
+                          Align(
+                            alignment: AlignmentDirectional(0.0, -1.0),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 10.0, 0.0, 0.0),
+                              child: Container(
+                                width: 380.0,
+                                height: 40.0,
+                                decoration: BoxDecoration(
+                                  color: Color(0xCD22282F),
+                                  borderRadius: BorderRadius.circular(10.0),
                                 ),
-                                Switch.adaptive(
-                                  value: _model.switchValue2 ??= true,
-                                  onChanged: (newValue) async {
-                                    setState(
-                                        () => _model.switchValue2 = newValue!);
-                                  },
-                                  activeTrackColor:
-                                      FlutterFlowTheme.of(context).success,
-                                  inactiveTrackColor:
-                                      FlutterFlowTheme.of(context).error,
-                                  inactiveThumbColor:
-                                      FlutterFlowTheme.of(context)
-                                          .secondaryText,
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      12.0, 0.0, 12.0, 0.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  8.0, 0.0, 8.0, 0.0),
+                                          child: TextFormField(
+                                            controller: _model.textController,
+                                            autofocus: true,
+                                            obscureText: false,
+                                            decoration: InputDecoration(
+                                              labelText:
+                                                  'Type in what captions you want here',
+                                              labelStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMediumFamily,
+                                                        fontSize: 12.0,
+                                                        fontStyle:
+                                                            FontStyle.italic,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMediumFamily),
+                                                      ),
+                                              hintStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium,
+                                              enabledBorder: InputBorder.none,
+                                              focusedBorder: InputBorder.none,
+                                              errorBorder: InputBorder.none,
+                                              focusedErrorBorder:
+                                                  InputBorder.none,
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium,
+                                            maxLines: 10,
+                                            validator: _model
+                                                .textControllerValidator
+                                                .asValidator(context),
+                                          ),
+                                        ),
+                                      ),
+                                      Icon(
+                                        Icons.send,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 24.0,
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ],
+                              ),
                             ),
                           ),
-                        ].divide(SizedBox(width: 5.0)),
+                        ],
                       ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 96.0,
-                              height: 40.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).primary,
-                                borderRadius: BorderRadius.circular(40.0),
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  FaIcon(
-                                    FontAwesomeIcons.facebook,
-                                    color:
-                                        FlutterFlowTheme.of(context).secondary,
-                                    size: 20.0,
-                                  ),
-                                  Switch.adaptive(
-                                    value: _model.switchValue3 ??= true,
-                                    onChanged: (newValue) async {
-                                      setState(() =>
-                                          _model.switchValue3 = newValue!);
-                                    },
-                                    activeTrackColor:
-                                        FlutterFlowTheme.of(context).success,
-                                    inactiveTrackColor:
-                                        FlutterFlowTheme.of(context).error,
-                                    inactiveThumbColor:
-                                        FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              width: 96.0,
-                              height: 40.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).primary,
-                                borderRadius: BorderRadius.circular(40.0),
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  FaIcon(
-                                    FontAwesomeIcons.youtube,
-                                    color:
-                                        FlutterFlowTheme.of(context).secondary,
-                                    size: 20.0,
-                                  ),
-                                  Switch.adaptive(
-                                    value: _model.switchValue4 ??= true,
-                                    onChanged: (newValue) async {
-                                      setState(() =>
-                                          _model.switchValue4 = newValue!);
-                                    },
-                                    activeTrackColor:
-                                        FlutterFlowTheme.of(context).success,
-                                    inactiveTrackColor:
-                                        FlutterFlowTheme.of(context).error,
-                                    inactiveThumbColor:
-                                        FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ].divide(SizedBox(width: 5.0)),
-                        ),
-                      ),
-                    ].divide(SizedBox(height: 10.0)),
-                  ),
+                    ),
+                  ],
                 ),
               ),
+            ),
             Align(
               alignment: AlignmentDirectional(0.0, 0.0),
               child: Padding(

@@ -87,11 +87,17 @@ class _ConnectWidgetState extends State<ConnectWidget> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    wrapWithModel(
-                      model: _model.sidebarModel,
-                      updateCallback: () => setState(() {}),
-                      child: SidebarWidget(),
-                    ),
+                    if (responsiveVisibility(
+                      context: context,
+                      phone: false,
+                      tablet: false,
+                      tabletLandscape: false,
+                    ))
+                      wrapWithModel(
+                        model: _model.sidebarModel,
+                        updateCallback: () => setState(() {}),
+                        child: SidebarWidget(),
+                      ),
                     if (responsiveVisibility(
                       context: context,
                       phone: false,
@@ -394,42 +400,36 @@ class _ConnectWidgetState extends State<ConnectWidget> {
                                                           ),
                                                         ),
                                                         Flexible(
-                                                          child: Container(
-                                                            width: MediaQuery
-                                                                        .sizeOf(
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        10.0,
+                                                                        0.0),
+                                                            child: Container(
+                                                              width: 160.0,
+                                                              height: 40.0,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color: Colors
+                                                                    .transparent,
+                                                              ),
+                                                              child: Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                children: [
+                                                                  FaIcon(
+                                                                    FontAwesomeIcons
+                                                                        .trash,
+                                                                    color: FlutterFlowTheme.of(
                                                                             context)
-                                                                    .width *
-                                                                1.0,
-                                                            height: 40.0,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: Colors
-                                                                  .transparent,
-                                                            ),
-                                                            child: Align(
-                                                              alignment:
-                                                                  AlignmentDirectional(
-                                                                      0.0, 0.0),
-                                                              child: Text(
-                                                                'View Profile Set',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                    ),
+                                                                        .primary,
+                                                                    size: 20.0,
+                                                                  ),
+                                                                ],
                                                               ),
                                                             ),
                                                           ),

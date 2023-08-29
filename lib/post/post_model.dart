@@ -1,16 +1,13 @@
 import '/backend/firebase_storage/storage.dart';
 import '/components/sidebar/sidebar_widget.dart';
 import '/components/uploadphoto/uploadphoto_widget.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -34,27 +31,14 @@ class PostModel extends FlutterFlowModel {
       FFUploadedFile(bytes: Uint8List.fromList([]));
   String uploadedFileUrl1 = '';
 
-  // State field(s) for DropDown widget.
-  String? dropDownValue;
-  FormFieldController<String>? dropDownValueController;
-  // State field(s) for Switch widget.
-  bool? switchValue1;
-  // State field(s) for Switch widget.
-  bool? switchValue2;
-  // State field(s) for Switch widget.
-  bool? switchValue3;
-  // State field(s) for Switch widget.
-  bool? switchValue4;
+  // State field(s) for TextField widget.
+  TextEditingController? textController1;
+  String? Function(BuildContext, String?)? textController1Validator;
   // Model for uploadphoto component.
   late UploadphotoModel uploadphotoModel1;
-  // State field(s) for Switch widget.
-  bool? switchValue5;
-  // State field(s) for Switch widget.
-  bool? switchValue6;
-  // State field(s) for Switch widget.
-  bool? switchValue7;
-  // State field(s) for Switch widget.
-  bool? switchValue8;
+  // State field(s) for TextField widget.
+  TextEditingController? textController2;
+  String? Function(BuildContext, String?)? textController2Validator;
   // State field(s) for TabBar widget.
   TabController? tabBarController2;
   int get tabBarCurrentIndex2 =>
@@ -80,7 +64,9 @@ class PostModel extends FlutterFlowModel {
     unfocusNode.dispose();
     sidebarModel.dispose();
     tabBarController1?.dispose();
+    textController1?.dispose();
     uploadphotoModel1.dispose();
+    textController2?.dispose();
     tabBarController2?.dispose();
     uploadphotoModel2.dispose();
   }
