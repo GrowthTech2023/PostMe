@@ -98,6 +98,39 @@ class YoutubePostCall {
   }
 }
 
+class GptPostCall {
+  static Future<ApiCallResponse> call() {
+    return ApiManager.instance.makeApiCall(
+      callName: 'gptPost',
+      apiUrl: 'https://api.openai.com/v1/chat/completions',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+class GptGetResponseCall {
+  static Future<ApiCallResponse> call() {
+    return ApiManager.instance.makeApiCall(
+      callName: 'gptGetResponse',
+      apiUrl: 'https://api.openai.com/v1/chat/completions',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
