@@ -131,6 +131,23 @@ class GptGetResponseCall {
   }
 }
 
+class YutubeGetCall {
+  static Future<ApiCallResponse> call() {
+    return ApiManager.instance.makeApiCall(
+      callName: 'yutubeGet',
+      apiUrl:
+          'https://www.googleapis.com/upload/youtube/v3/videos?part=snippet,status',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
