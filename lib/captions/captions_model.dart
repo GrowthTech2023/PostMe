@@ -1,10 +1,12 @@
 import '/flutter_flow/flutter_flow_drop_down.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -63,9 +65,42 @@ class CaptionsModel extends FlutterFlowModel {
   // State field(s) for TextField widget.
   TextEditingController? textController6;
   String? Function(BuildContext, String?)? textController6Validator;
+  // State field(s) for DropDown widget.
+  String? dropDownValue6;
+  FormFieldController<String>? dropDownValueController6;
   // State field(s) for TextField widget.
   TextEditingController? textController7;
   String? Function(BuildContext, String?)? textController7Validator;
+  // State field(s) for TextField widget.
+  TextEditingController? textController8;
+  String? Function(BuildContext, String?)? textController8Validator;
+  // State field(s) for TextField widget.
+  TextEditingController? textController9;
+  String? Function(BuildContext, String?)? textController9Validator;
+  // State field(s) for TextField widget.
+  TextEditingController? textController10;
+  String? Function(BuildContext, String?)? textController10Validator;
+  // State field(s) for DropDown widget.
+  String? dropDownValue7;
+  FormFieldController<String>? dropDownValueController7;
+  // State field(s) for DropDown widget.
+  String? dropDownValue8;
+  FormFieldController<String>? dropDownValueController8;
+  // State field(s) for DropDown widget.
+  String? dropDownValue9;
+  FormFieldController<String>? dropDownValueController9;
+  // State field(s) for Checkbox widget.
+  bool? checkboxValue4;
+  // State field(s) for Checkbox widget.
+  bool? checkboxValue5;
+  // State field(s) for Checkbox widget.
+  bool? checkboxValue6;
+  // State field(s) for TextField widget.
+  TextEditingController? textController11;
+  String? Function(BuildContext, String?)? textController11Validator;
+  // State field(s) for TextField widget.
+  TextEditingController? textController12;
+  String? Function(BuildContext, String?)? textController12Validator;
 
   /// Initialization and disposal methods.
 
@@ -80,6 +115,11 @@ class CaptionsModel extends FlutterFlowModel {
     textController5?.dispose();
     textController6?.dispose();
     textController7?.dispose();
+    textController8?.dispose();
+    textController9?.dispose();
+    textController10?.dispose();
+    textController11?.dispose();
+    textController12?.dispose();
   }
 
   /// Action blocks are added here.

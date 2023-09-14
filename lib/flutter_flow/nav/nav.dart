@@ -106,7 +106,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ? NavBarPage(initialPage: 'Connect')
               : NavBarPage(
                   initialPage: 'Connect',
-                  page: ConnectWidget(),
+                  page: ConnectWidget(
+                    profileSetsref: params.getParam('profileSetsref',
+                        ParamType.DocumentReference, false, ['users']),
+                  ),
                 ),
         ),
         FFRoute(
@@ -125,7 +128,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'managesubscription',
           path: '/managesubscription',
-          builder: (context, params) => ManagesubscriptionWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'managesubscription')
+              : ManagesubscriptionWidget(),
         ),
         FFRoute(
           name: 'Schedule',
@@ -142,12 +147,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'Captions',
           path: '/captions',
           requireAuth: true,
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'Captions')
-              : NavBarPage(
-                  initialPage: 'Captions',
-                  page: CaptionsWidget(),
-                ),
+          builder: (context, params) => CaptionsWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

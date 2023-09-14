@@ -35,7 +35,7 @@ class _LoginpageWidgetState extends State<LoginpageWidget>
       vsync: this,
       length: 2,
       initialIndex: 0,
-    );
+    )..addListener(() => setState(() {}));
     _model.emailAddressLoginController ??= TextEditingController();
     _model.passwordLoginController ??= TextEditingController();
     _model.emailAddressSignupController ??= TextEditingController();
@@ -71,7 +71,7 @@ class _LoginpageWidgetState extends State<LoginpageWidget>
                     MediaQuery.sizeOf(context).width >= 992.0
                         ? (MediaQuery.sizeOf(context).width * 0.5)
                         : MediaQuery.sizeOf(context).width,
-                    640.0,
+                    393.0,
                   ),
                   height: MediaQuery.sizeOf(context).height * 1.0,
                   decoration: BoxDecoration(
@@ -103,7 +103,7 @@ class _LoginpageWidgetState extends State<LoginpageWidget>
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Align(
-                                  alignment: AlignmentDirectional(1.0, -1.0),
+                                  alignment: AlignmentDirectional(1.00, -1.00),
                                   child: Image.asset(
                                     'assets/images/PostMe_(3).png',
                                     width: 232.0,
@@ -164,7 +164,6 @@ class _LoginpageWidgetState extends State<LoginpageWidget>
                                       ),
                                     ],
                                     controller: _model.tabBarController,
-                                    onTap: (value) => setState(() {}),
                                   ),
                                 ),
                                 Expanded(
@@ -708,7 +707,7 @@ class _LoginpageWidgetState extends State<LoginpageWidget>
                                                         ),
                                                         alignment:
                                                             AlignmentDirectional(
-                                                                0.0, 0.0),
+                                                                0.00, 0.00),
                                                         child: FaIcon(
                                                           FontAwesomeIcons
                                                               .google,
@@ -774,6 +773,11 @@ class _LoginpageWidgetState extends State<LoginpageWidget>
                                                     if (user == null) {
                                                       return;
                                                     }
+
+                                                    FFAppState().update(() {
+                                                      FFAppState().uidstate =
+                                                          currentUserUid;
+                                                    });
 
                                                     context.goNamedAuth(
                                                         'Connect',
@@ -1457,7 +1461,7 @@ class _LoginpageWidgetState extends State<LoginpageWidget>
                                                         ),
                                                         alignment:
                                                             AlignmentDirectional(
-                                                                0.0, 0.0),
+                                                                0.00, 0.00),
                                                         child: FaIcon(
                                                           FontAwesomeIcons
                                                               .google,
@@ -1490,6 +1494,7 @@ class _LoginpageWidgetState extends State<LoginpageWidget>
                   context: context,
                   phone: false,
                   tablet: false,
+                  tabletLandscape: false,
                 ))
                   Flexible(
                     child: Container(

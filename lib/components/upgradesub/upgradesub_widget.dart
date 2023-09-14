@@ -43,7 +43,7 @@ class _UpgradesubWidgetState extends State<UpgradesubWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.00, 0.00),
       child: Container(
         width: MediaQuery.sizeOf(context).width * 0.6,
         height: 400.0,
@@ -87,7 +87,7 @@ class _UpgradesubWidgetState extends State<UpgradesubWidget> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Align(
-                          alignment: AlignmentDirectional(-1.0, -1.0),
+                          alignment: AlignmentDirectional(-1.00, -1.00),
                           child: Text(
                             'Your current plan',
                             style: FlutterFlowTheme.of(context)
@@ -105,7 +105,7 @@ class _UpgradesubWidgetState extends State<UpgradesubWidget> {
                           ),
                         ),
                         Align(
-                          alignment: AlignmentDirectional(-1.0, -1.0),
+                          alignment: AlignmentDirectional(-1.00, -1.00),
                           child: Text(
                             'Pro',
                             style: FlutterFlowTheme.of(context)
@@ -149,7 +149,7 @@ class _UpgradesubWidgetState extends State<UpgradesubWidget> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Align(
-                              alignment: AlignmentDirectional(-1.0, -1.0),
+                              alignment: AlignmentDirectional(-1.00, -1.00),
                               child: Text(
                                 'Your current plan',
                                 style: FlutterFlowTheme.of(context)
@@ -168,7 +168,7 @@ class _UpgradesubWidgetState extends State<UpgradesubWidget> {
                               ),
                             ),
                             Align(
-                              alignment: AlignmentDirectional(-1.0, -1.0),
+                              alignment: AlignmentDirectional(-1.00, -1.00),
                               child: Text(
                                 'All-Star',
                                 style: FlutterFlowTheme.of(context)
@@ -210,7 +210,7 @@ class _UpgradesubWidgetState extends State<UpgradesubWidget> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Align(
-                              alignment: AlignmentDirectional(-1.0, -1.0),
+                              alignment: AlignmentDirectional(-1.00, -1.00),
                               child: Text(
                                 'Your current plan',
                                 style: FlutterFlowTheme.of(context)
@@ -229,7 +229,7 @@ class _UpgradesubWidgetState extends State<UpgradesubWidget> {
                               ),
                             ),
                             Align(
-                              alignment: AlignmentDirectional(-1.0, -1.0),
+                              alignment: AlignmentDirectional(-1.00, -1.00),
                               child: Text(
                                 'Superstar',
                                 style: FlutterFlowTheme.of(context)

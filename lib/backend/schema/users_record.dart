@@ -66,6 +66,11 @@ class UsersRecord extends FirestoreRecord {
   int get profileSetsCount => _profileSetsCount ?? 0;
   bool hasProfileSetsCount() => _profileSetsCount != null;
 
+  // "profileset" field.
+  DocumentReference? _profileset;
+  DocumentReference? get profileset => _profileset;
+  bool hasProfileset() => _profileset != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -77,6 +82,7 @@ class UsersRecord extends FirestoreRecord {
     _password = snapshotData['password'] as String?;
     _pricingCategory = snapshotData['pricingCategory'] as String?;
     _profileSetsCount = castToType<int>(snapshotData['profileSetsCount']);
+    _profileset = snapshotData['profileset'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -122,6 +128,7 @@ Map<String, dynamic> createUsersRecordData({
   String? password,
   String? pricingCategory,
   int? profileSetsCount,
+  DocumentReference? profileset,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -134,6 +141,7 @@ Map<String, dynamic> createUsersRecordData({
       'password': password,
       'pricingCategory': pricingCategory,
       'profileSetsCount': profileSetsCount,
+      'profileset': profileset,
     }.withoutNulls,
   );
 
@@ -155,7 +163,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         listEquality.equals(e1?.connectedPlatforms, e2?.connectedPlatforms) &&
         e1?.password == e2?.password &&
         e1?.pricingCategory == e2?.pricingCategory &&
-        e1?.profileSetsCount == e2?.profileSetsCount;
+        e1?.profileSetsCount == e2?.profileSetsCount &&
+        e1?.profileset == e2?.profileset;
   }
 
   @override
@@ -169,7 +178,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.connectedPlatforms,
         e?.password,
         e?.pricingCategory,
-        e?.profileSetsCount
+        e?.profileSetsCount,
+        e?.profileset
       ]);
 
   @override

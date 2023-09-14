@@ -1,6 +1,11 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/sidebartabs/posttab/posttab_widget.dart';
+import '/sidebartabs/profilestab/profilestab_widget.dart';
+import '/sidebartabs/scheduletab/scheduletab_widget.dart';
+import '/sidebartabs/settingstab/settingstab_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -91,12 +96,12 @@ class _SidebarWidgetState extends State<SidebarWidget>
               color: Color(0x001A1A1A),
             ),
             child: Align(
-              alignment: AlignmentDirectional(0.0, -1.0),
+              alignment: AlignmentDirectional(0.00, -1.00),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Align(
-                    alignment: AlignmentDirectional(1.0, -1.0),
+                    alignment: AlignmentDirectional(1.00, -1.00),
                     child: Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
@@ -125,7 +130,7 @@ class _SidebarWidgetState extends State<SidebarWidget>
                           child: Stack(
                             children: [
                               Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.00, 0.00),
                                 child: Icon(
                                   Icons.menu_open_rounded,
                                   color: FlutterFlowTheme.of(context).primary,
@@ -133,7 +138,7 @@ class _SidebarWidgetState extends State<SidebarWidget>
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.00, 0.00),
                                 child: Icon(
                                   Icons.menu_open_rounded,
                                   color: FlutterFlowTheme.of(context).primary,
@@ -149,182 +154,25 @@ class _SidebarWidgetState extends State<SidebarWidget>
                       ),
                     ),
                   ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                    child: Container(
-                      width: 230.0,
-                      height: 45.0,
-                      decoration: BoxDecoration(
-                        color: Color(0x9222282F),
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            20.0, 0.0, 20.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Icon(
-                              Icons.add_circle,
-                              color:
-                                  FlutterFlowTheme.of(context).primaryBtnText,
-                              size: 24.0,
-                            ),
-                            if (FFAppState().closesidebar == false)
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 0.0, 0.0, 0.0),
-                                child: Text(
-                                  'Post',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .bodyMediumFamily,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        fontWeight: FontWeight.bold,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMediumFamily),
-                                      ),
-                                ),
-                              ),
-                          ],
-                        ),
-                      ),
-                    ),
+                  wrapWithModel(
+                    model: _model.posttabModel,
+                    updateCallback: () => setState(() {}),
+                    child: PosttabWidget(),
                   ),
-                  Container(
-                    width: 230.0,
-                    height: 45.0,
-                    decoration: BoxDecoration(
-                      color: Color(0x0022282F),
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Icon(
-                            Icons.account_circle,
-                            color: FlutterFlowTheme.of(context).primaryBtnText,
-                            size: 24.0,
-                          ),
-                          if (FFAppState().closesidebar == false)
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  15.0, 0.0, 0.0, 0.0),
-                              child: Text(
-                                'Manage Profiles',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily,
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      fontWeight: FontWeight.bold,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMediumFamily),
-                                    ),
-                              ),
-                            ),
-                        ],
-                      ),
-                    ),
+                  wrapWithModel(
+                    model: _model.profilestabModel,
+                    updateCallback: () => setState(() {}),
+                    child: ProfilestabWidget(),
                   ),
-                  Container(
-                    width: 230.0,
-                    height: 45.0,
-                    decoration: BoxDecoration(
-                      color: Color(0x0022282F),
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Icon(
-                            Icons.calendar_month,
-                            color: FlutterFlowTheme.of(context).primaryBtnText,
-                            size: 24.0,
-                          ),
-                          if (FFAppState().closesidebar == false)
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  15.0, 0.0, 0.0, 0.0),
-                              child: Text(
-                                'Schedule',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily,
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      fontWeight: FontWeight.bold,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMediumFamily),
-                                    ),
-                              ),
-                            ),
-                        ],
-                      ),
-                    ),
+                  wrapWithModel(
+                    model: _model.scheduletabModel,
+                    updateCallback: () => setState(() {}),
+                    child: ScheduletabWidget(),
                   ),
-                  Container(
-                    width: 230.0,
-                    height: 45.0,
-                    decoration: BoxDecoration(
-                      color: Color(0x0022282F),
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Icon(
-                            Icons.settings,
-                            color: FlutterFlowTheme.of(context).primaryBtnText,
-                            size: 24.0,
-                          ),
-                          if (FFAppState().closesidebar == false)
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  15.0, 0.0, 0.0, 0.0),
-                              child: Text(
-                                'Settings',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily,
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      fontWeight: FontWeight.bold,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMediumFamily),
-                                    ),
-                              ),
-                            ),
-                        ],
-                      ),
-                    ),
+                  wrapWithModel(
+                    model: _model.settingstabModel,
+                    updateCallback: () => setState(() {}),
+                    child: SettingstabWidget(),
                   ),
                 ].divide(SizedBox(height: 5.0)),
               ),
@@ -344,7 +192,7 @@ class _SidebarWidgetState extends State<SidebarWidget>
                 children: [
                   if (FFAppState().closesidebar == false)
                     Align(
-                      alignment: AlignmentDirectional(0.0, 1.0),
+                      alignment: AlignmentDirectional(0.00, 1.00),
                       child: Container(
                         width: 198.0,
                         height: 41.0,
@@ -361,9 +209,9 @@ class _SidebarWidgetState extends State<SidebarWidget>
                           ),
                         ),
                         child: Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
+                          alignment: AlignmentDirectional(0.00, 0.00),
                           child: Text(
-                            'pahlevansina@gmail.com',
+                            currentUserEmail,
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(

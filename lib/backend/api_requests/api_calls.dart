@@ -9,70 +9,101 @@ export 'api_manager.dart' show ApiCallResponse;
 
 const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 
-class GoogleOauthCall {
-  static Future<ApiCallResponse> call() {
+/// Start OpenAI GPT Group Code
+
+class OpenAIGPTGroup {
+  static String baseUrl = 'https://api.openai.com/v1';
+  static Map<String, String> headers = {
+    'Content-Type': 'application/json',
+  };
+  static UserPromptCall userPromptCall = UserPromptCall();
+}
+
+class UserPromptCall {
+  Future<ApiCallResponse> call({
+    String? apiKey = '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',
+    dynamic? promptJson,
+  }) {
+    final prompt = _serializeJson(promptJson);
+    final ffApiRequestBody = '''
+{
+  "model": "gpt-3.5-turbo-16k-0613",
+  "messages": ${prompt}
+}''';
     return ApiManager.instance.makeApiCall(
-      callName: 'googleOauth',
-      apiUrl:
-          'https://postme-390612.firebaseapp.com/__/auth/action?mode=action&oobCode=code',
-      callType: ApiCallType.GET,
-      headers: {},
+      callName: 'userPrompt',
+      apiUrl: '${OpenAIGPTGroup.baseUrl}/chat/completions',
+      callType: ApiCallType.POST,
+      headers: {
+        ...OpenAIGPTGroup.headers,
+        'Authorization': 'Bearer ${apiKey}',
+      },
       params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
-      decodeUtf8: true,
+      decodeUtf8: false,
       cache: false,
     );
   }
+
+  dynamic createdTimeStamp(dynamic response) => getJsonField(
+        response,
+        r'''$.created''',
+      );
+  dynamic role(dynamic response) => getJsonField(
+        response,
+        r'''$.choices[:].message.role''',
+      );
+  dynamic response(dynamic response) => getJsonField(
+        response,
+        r'''$.choices[:].message.content''',
+      );
 }
 
-class ConnectTiktokAccountCall {
-  static Future<ApiCallResponse> call() {
+/// End OpenAI GPT Group Code
+
+/// Start tiktok Group Code
+
+class TiktokGroup {
+  static String baseUrl = 'https://open-api.tiktok.com';
+  static Map<String, String> headers = {};
+  static TiktokConnectCall tiktokConnectCall = TiktokConnectCall();
+}
+
+class TiktokConnectCall {
+  Future<ApiCallResponse> call() {
     return ApiManager.instance.makeApiCall(
-      callName: 'connectTiktokAccount',
+      callName: 'tiktokConnect',
       apiUrl:
-          'https://open-api.tiktok.com/platform/oauth/connect/?client_key=aw5xgjgqk86aj4ey&response_type=code&redirect_uri=https://postme-390612.firebaseapp.com/__/auth/handler&scope=user.info.basic',
+          '${TiktokGroup.baseUrl}/platform/oauth/connect/?client_key=aw5xgjgqk86aj4ey&response_type=code&redirect_uri=https://postme-390612.firebaseapp.com/__/auth/handler&scope=user.info.basic',
       callType: ApiCallType.POST,
-      headers: {},
+      headers: {
+        ...TiktokGroup.headers,
+      },
       params: {},
       bodyType: BodyType.NONE,
       returnBody: true,
       encodeBodyUtf8: false,
-      decodeUtf8: true,
+      decodeUtf8: false,
       cache: false,
     );
   }
 }
 
-class ExchangeCodeForTokenCall {
-  static Future<ApiCallResponse> call({
-    String? code = '',
-  }) {
-    return ApiManager.instance.makeApiCall(
-      callName: 'exchangeCodeForToken',
-      apiUrl: 'https://open-api.tiktok.com/oauth/access_token/',
-      callType: ApiCallType.POST,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      params: {
-        'client_key': "aw5xgjgqk86aj4ey",
-        'client_secret': "oqiPFe5bExpZFA1HAxtc1cCjnlCw0nsF",
-        'code': code,
-        'grant_type': "authorization_code",
-        'redirect_uri': "https://postme-390612.firebaseapp.com/__/auth/handler",
-      },
-      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: true,
-      cache: false,
-    );
-  }
+/// End tiktok Group Code
+
+/// Start youtube Group Code
+
+class YoutubeGroup {
+  static String baseUrl = 'https://www.googleapis.com';
+  static Map<String, String> headers = {};
+  static YoutubeUploadCall youtubeUploadCall = YoutubeUploadCall();
 }
 
-class YoutubePostCall {
-  static Future<ApiCallResponse> call({
+class YoutubeUploadCall {
+  Future<ApiCallResponse> call({
     String? snippetTitle = '',
     String? snippetDescription = '',
     List<String>? snippetTagsList,
@@ -81,11 +112,12 @@ class YoutubePostCall {
     final snippetTags = _serializeList(snippetTagsList);
 
     return ApiManager.instance.makeApiCall(
-      callName: 'youtubePost',
+      callName: 'youtubeUpload',
       apiUrl:
-          'https://www.googleapis.com/upload/youtube/v3/videos?part=snippet,status',
+          '${YoutubeGroup.baseUrl}/upload/youtube/v3/videos?part=snippet,status',
       callType: ApiCallType.POST,
       headers: {
+        ...YoutubeGroup.headers,
         'Content-Type': 'application/json',
       },
       params: {},
@@ -98,55 +130,7 @@ class YoutubePostCall {
   }
 }
 
-class GptPostCall {
-  static Future<ApiCallResponse> call() {
-    return ApiManager.instance.makeApiCall(
-      callName: 'gptPost',
-      apiUrl: 'https://api.openai.com/v1/chat/completions',
-      callType: ApiCallType.POST,
-      headers: {},
-      params: {},
-      bodyType: BodyType.JSON,
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-    );
-  }
-}
-
-class GptGetResponseCall {
-  static Future<ApiCallResponse> call() {
-    return ApiManager.instance.makeApiCall(
-      callName: 'gptGetResponse',
-      apiUrl: 'https://api.openai.com/v1/chat/completions',
-      callType: ApiCallType.GET,
-      headers: {},
-      params: {},
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-    );
-  }
-}
-
-class YutubeGetCall {
-  static Future<ApiCallResponse> call() {
-    return ApiManager.instance.makeApiCall(
-      callName: 'yutubeGet',
-      apiUrl:
-          'https://www.googleapis.com/upload/youtube/v3/videos?part=snippet,status',
-      callType: ApiCallType.GET,
-      headers: {},
-      params: {},
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-    );
-  }
-}
+/// End youtube Group Code
 
 class ApiPagingParams {
   int nextPageNumber = 0;

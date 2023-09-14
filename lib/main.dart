@@ -59,6 +59,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+
     _appStateNotifier = AppStateNotifier.instance;
     _router = createRouter(_appStateNotifier);
     userStream = postMeFirebaseUserStream()
@@ -139,10 +140,10 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'Connect': ConnectWidget(),
       'Post': PostWidget(),
+      'Connect': ConnectWidget(),
+      'managesubscription': ManagesubscriptionWidget(),
       'Schedule': ScheduleWidget(),
-      'Captions': CaptionsWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -158,7 +159,6 @@ class _NavBarPageState extends State<NavBarPage> {
       bottomNavigationBar: Visibility(
         visible: responsiveVisibility(
           context: context,
-          tabletLandscape: false,
           desktop: false,
         ),
         child: FloatingNavbar(
@@ -183,7 +183,7 @@ class _NavBarPageState extends State<NavBarPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
-                    Icons.account_circle,
+                    Icons.add_circle_outline_outlined,
                     color: currentIndex == 0
                         ? FlutterFlowTheme.of(context).alternate
                         : FlutterFlowTheme.of(context).primaryText,
@@ -197,7 +197,7 @@ class _NavBarPageState extends State<NavBarPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
-                    Icons.add_circle_outline_outlined,
+                    Icons.account_circle,
                     color: currentIndex == 1
                         ? FlutterFlowTheme.of(context).alternate
                         : FlutterFlowTheme.of(context).primaryText,
@@ -211,11 +211,10 @@ class _NavBarPageState extends State<NavBarPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
-                    Icons.add_circle_outline_outlined,
+                    Icons.settings,
                     color: currentIndex == 2
                         ? FlutterFlowTheme.of(context).alternate
                         : FlutterFlowTheme.of(context).primaryText,
-                    size: 24.0,
                   ),
                 ],
               ),

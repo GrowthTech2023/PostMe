@@ -1,3 +1,5 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/components/sidebar/sidebar_widget.dart';
 import '/components/uploadphoto/uploadphoto_widget.dart';
@@ -6,6 +8,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -34,14 +37,14 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
       vsync: this,
       length: 2,
       initialIndex: 0,
-    );
+    )..addListener(() => setState(() {}));
     _model.textController1 ??= TextEditingController();
-    _model.textController2 ??= TextEditingController();
+    _model.textController2 ??= TextEditingController(text: FFAppState().prompt);
     _model.tabBarController2 = TabController(
       vsync: this,
       length: 2,
       initialIndex: 0,
-    );
+    )..addListener(() => setState(() {}));
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -67,62 +70,53 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
             appBar: AppBar(
               backgroundColor: FlutterFlowTheme.of(context).primary,
               automaticallyImplyLeading: false,
-              title: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Container(
-                    width: 48.0,
-                    height: 41.0,
-                    decoration: BoxDecoration(
-                      color: Color(0x001A1A1A),
-                    ),
-                    child: Icon(
-                      Icons.menu,
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      size: 24.0,
-                    ),
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional(-1.0, 0.0),
-                    child: Text(
-                      'PostMe',
-                      style:
-                          FlutterFlowTheme.of(context).headlineSmall.override(
-                                fontFamily: 'Inter Tight',
-                                fontSize: 28.0,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.bold,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .headlineSmallFamily),
-                              ),
-                    ),
-                  ),
-                ],
+              title: Align(
+                alignment: AlignmentDirectional(-1.00, 0.00),
+                child: Text(
+                  'PostMe',
+                  style: FlutterFlowTheme.of(context).headlineSmall.override(
+                        fontFamily: 'Inter Tight',
+                        fontSize: 28.0,
+                        letterSpacing: 0.0,
+                        fontWeight: FontWeight.bold,
+                        useGoogleFonts: GoogleFonts.asMap().containsKey(
+                            FlutterFlowTheme.of(context).headlineSmallFamily),
+                      ),
+                ),
               ),
               actions: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 2.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 7.0, 10.0, 7.0),
                   child: Container(
-                    width: 45.0,
-                    height: 45.0,
+                    width: 155.0,
+                    height: MediaQuery.sizeOf(context).height * 0.3,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).alternate,
-                      shape: BoxShape.circle,
+                      gradient: LinearGradient(
+                        colors: [
+                          Color(0xFF6326C0),
+                          FlutterFlowTheme.of(context).secondary
+                        ],
+                        stops: [0.0, 1.0],
+                        begin: AlignmentDirectional(0.0, -1.0),
+                        end: AlignmentDirectional(0, 1.0),
+                      ),
+                      borderRadius: BorderRadius.circular(10.0),
+                      shape: BoxShape.rectangle,
                     ),
                     child: Align(
-                      alignment: AlignmentDirectional(0.0, 0.0),
-                      child: Container(
-                        width: 35.0,
-                        height: 35.0,
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                        ),
-                        child: Image.network(
-                          'https://picsum.photos/seed/984/600',
-                          fit: BoxFit.fitHeight,
-                        ),
+                      alignment: AlignmentDirectional(0.00, 0.00),
+                      child: Text(
+                        currentUserEmail,
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
+                              color: FlutterFlowTheme.of(context).primary,
+                              fontSize: 12.0,
+                              fontWeight: FontWeight.w600,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily),
+                            ),
                       ),
                     ),
                   ),
@@ -134,12 +128,20 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
             body: SafeArea(
               top: true,
               child: Align(
-                alignment: AlignmentDirectional(0.0, 0.0),
+                alignment: AlignmentDirectional(0.00, 0.00),
                 child: Container(
                   width: MediaQuery.sizeOf(context).width * 1.0,
                   height: MediaQuery.sizeOf(context).height * 1.0,
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0xFF171717),
+                        FlutterFlowTheme.of(context).secondary
+                      ],
+                      stops: [0.0, 1.0],
+                      begin: AlignmentDirectional(0.0, -1.0),
+                      end: AlignmentDirectional(0, 1.0),
+                    ),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
@@ -157,7 +159,7 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                         ),
                       Flexible(
                         child: Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
+                          alignment: AlignmentDirectional(0.00, 0.00),
                           child: Container(
                             width: valueOrDefault<double>(
                               () {
@@ -177,12 +179,19 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                             ),
                             height: MediaQuery.sizeOf(context).height * 1.0,
                             decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color(0xFF171717),
+                                  FlutterFlowTheme.of(context).secondary
+                                ],
+                                stops: [0.0, 1.0],
+                                begin: AlignmentDirectional(0.0, -1.0),
+                                end: AlignmentDirectional(0, 1.0),
+                              ),
                             ),
-                            alignment: AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.00, 0.00),
                             child: Align(
-                              alignment: AlignmentDirectional(0.0, 0.0),
+                              alignment: AlignmentDirectional(0.00, 0.00),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -194,7 +203,7 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                   ))
                                     Align(
                                       alignment:
-                                          AlignmentDirectional(0.0, -1.0),
+                                          AlignmentDirectional(0.00, -1.00),
                                       child: Container(
                                         width:
                                             MediaQuery.sizeOf(context).width *
@@ -238,8 +247,6 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                 ],
                                                 controller:
                                                     _model.tabBarController1,
-                                                onTap: (value) =>
-                                                    setState(() {}),
                                               ),
                                             ),
                                             Expanded(
@@ -250,7 +257,7 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                   Align(
                                                     alignment:
                                                         AlignmentDirectional(
-                                                            0.0, -1.0),
+                                                            0.00, -1.00),
                                                     child:
                                                         SingleChildScrollView(
                                                       child: Column(
@@ -266,7 +273,8 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                           Align(
                                                             alignment:
                                                                 AlignmentDirectional(
-                                                                    0.0, -1.0),
+                                                                    0.00,
+                                                                    -1.00),
                                                             child: Padding(
                                                               padding:
                                                                   EdgeInsetsDirectional
@@ -426,10 +434,9 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                                 child: Stack(
                                                                   children: [
                                                                     Align(
-                                                                      alignment:
-                                                                          AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
+                                                                      alignment: AlignmentDirectional(
+                                                                          0.00,
+                                                                          0.00),
                                                                       child:
                                                                           Icon(
                                                                         Icons
@@ -445,8 +452,8 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                                         'True')
                                                                       Align(
                                                                         alignment: AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0),
+                                                                            0.00,
+                                                                            0.00),
                                                                         child:
                                                                             FlutterFlowVideoPlayer(
                                                                           path:
@@ -492,7 +499,8 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                               ),
                                                               alignment:
                                                                   AlignmentDirectional(
-                                                                      0.0, 0.0),
+                                                                      0.00,
+                                                                      0.00),
                                                               child: Column(
                                                                 mainAxisSize:
                                                                     MainAxisSize
@@ -504,8 +512,8 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                                   Align(
                                                                     alignment:
                                                                         AlignmentDirectional(
-                                                                            -1.0,
-                                                                            -1.0),
+                                                                            -1.00,
+                                                                            -1.00),
                                                                     child: Text(
                                                                       'Type in what type of captions \nyou want generated',
                                                                       style: FlutterFlowTheme.of(
@@ -544,8 +552,8 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                                       children: [
                                                                         Align(
                                                                           alignment: AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
+                                                                              0.00,
+                                                                              0.00),
                                                                           child:
                                                                               Text(
                                                                             'Generate me a caption about why Lebron James is better than Micharl Jordan, Stephen A Smith voice, 150 characters, 5 relevant hashtags, Chinese',
@@ -560,8 +568,8 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                                         ),
                                                                         Align(
                                                                           alignment: AlignmentDirectional(
-                                                                              0.0,
-                                                                              -1.0),
+                                                                              0.00,
+                                                                              -1.00),
                                                                           child:
                                                                               Padding(
                                                                             padding: EdgeInsetsDirectional.fromSTEB(
@@ -604,11 +612,6 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                                                         ),
                                                                                       ),
                                                                                     ),
-                                                                                    Icon(
-                                                                                      Icons.send,
-                                                                                      color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                      size: 24.0,
-                                                                                    ),
                                                                                   ],
                                                                                 ),
                                                                               ),
@@ -625,7 +628,7 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                           Align(
                                                             alignment:
                                                                 AlignmentDirectional(
-                                                                    0.0, 0.0),
+                                                                    0.00, 0.00),
                                                             child: Padding(
                                                               padding:
                                                                   EdgeInsetsDirectional
@@ -734,7 +737,7 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                     Flexible(
                                       child: Align(
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            AlignmentDirectional(0.00, 0.00),
                                         child: Container(
                                           width: FFAppState().closesidebar
                                               ? (MediaQuery.sizeOf(context)
@@ -747,11 +750,20 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                   .height *
                                               1.0,
                                           decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
+                                            gradient: LinearGradient(
+                                              colors: [
+                                                Color(0xFF171717),
+                                                FlutterFlowTheme.of(context)
+                                                    .secondary
+                                              ],
+                                              stops: [0.0, 1.0],
+                                              begin: AlignmentDirectional(
+                                                  0.0, -1.0),
+                                              end: AlignmentDirectional(0, 1.0),
+                                            ),
                                           ),
                                           alignment:
-                                              AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.00, 0.00),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment:
@@ -774,12 +786,16 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                       height: 65.0,
                                                       decoration: BoxDecoration(
                                                         color:
-                                                            Color(0xFF1A1A1A),
+                                                            Color(0x001A1A1A),
+                                                        border: Border.all(
+                                                          color: Colors
+                                                              .transparent,
+                                                        ),
                                                       ),
                                                       child: Align(
                                                         alignment:
                                                             AlignmentDirectional(
-                                                                0.0, 0.0),
+                                                                0.00, 0.00),
                                                         child: Text(
                                                           'Type in what type of captions \nyou want generated',
                                                           style: FlutterFlowTheme
@@ -810,9 +826,7 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                     width: 380.0,
                                                     height: 142.0,
                                                     decoration: BoxDecoration(
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondaryBackground,
+                                                      color: Color(0x001A1A1A),
                                                     ),
                                                     child: Column(
                                                       mainAxisSize:
@@ -821,9 +835,9 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                         Align(
                                                           alignment:
                                                               AlignmentDirectional(
-                                                                  0.0, 0.0),
+                                                                  0.00, 0.00),
                                                           child: Text(
-                                                            'Generate me a caption about why Lebron James is better than Micharl Jordan, Stephen A Smith voice, 150 characters, 5 relevant hashtags, Chinese',
+                                                            'Generate me a caption about why Lebron James is better than Michael Jordan, Stephen A Smith voice, 150 characters, 5 relevant hashtags, Chinese',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium
@@ -849,7 +863,7 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                         Align(
                                                           alignment:
                                                               AlignmentDirectional(
-                                                                  0.0, -1.0),
+                                                                  0.00, -1.00),
                                                           child: Padding(
                                                             padding:
                                                                 EdgeInsetsDirectional
@@ -901,9 +915,13 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                                           decoration:
                                                                               InputDecoration(
                                                                             labelText:
-                                                                                'Label here...',
-                                                                            labelStyle:
-                                                                                FlutterFlowTheme.of(context).labelMedium,
+                                                                                'Type in what captions you want here',
+                                                                            labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                  fontFamily: FlutterFlowTheme.of(context).labelMediumFamily,
+                                                                                  fontSize: 12.0,
+                                                                                  fontStyle: FontStyle.italic,
+                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelMediumFamily),
+                                                                                ),
                                                                             hintStyle:
                                                                                 FlutterFlowTheme.of(context).labelMedium,
                                                                             enabledBorder:
@@ -925,15 +943,6 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                    Icon(
-                                                                      Icons
-                                                                          .send,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondaryText,
-                                                                      size:
-                                                                          24.0,
-                                                                    ),
                                                                   ],
                                                                 ),
                                                               ),
@@ -941,6 +950,122 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                           ),
                                                         ),
                                                       ],
+                                                    ),
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            0.00, 0.00),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  5.0,
+                                                                  0.0,
+                                                                  20.0),
+                                                      child: FFButtonWidget(
+                                                        onPressed: () async {
+                                                          FFAppState()
+                                                              .update(() {
+                                                            FFAppState()
+                                                                    .jsonpayload2 =
+                                                                getJsonField(
+                                                              functions.converttoJSON(
+                                                                  FFAppState()
+                                                                      .prompt),
+                                                              r'''$''',
+                                                            );
+                                                          });
+                                                          _model.apiResultafm =
+                                                              await OpenAIGPTGroup
+                                                                  .userPromptCall
+                                                                  .call(
+                                                            promptJson:
+                                                                FFAppState()
+                                                                    .jsonpayload2,
+                                                          );
+                                                          if ((_model
+                                                                  .apiResultafm
+                                                                  ?.succeeded ??
+                                                              true)) {
+                                                            FFAppState()
+                                                                .update(() {
+                                                              FFAppState()
+                                                                      .generatedcaptions =
+                                                                  getJsonField(
+                                                                (_model.apiResultafm
+                                                                        ?.jsonBody ??
+                                                                    ''),
+                                                                r'''$.choices[:].message.content''',
+                                                              ).toString();
+                                                            });
+                                                            setState(() {
+                                                              _model
+                                                                  .textController1
+                                                                  ?.clear();
+                                                              _model
+                                                                  .textController2
+                                                                  ?.clear();
+                                                            });
+                                                          }
+
+                                                          setState(() {});
+                                                        },
+                                                        text: 'Next',
+                                                        icon: Icon(
+                                                          Icons.double_arrow,
+                                                          size: 15.0,
+                                                        ),
+                                                        options:
+                                                            FFButtonOptions(
+                                                          width: 140.0,
+                                                          height: 50.0,
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      20.0,
+                                                                      0.0,
+                                                                      24.0,
+                                                                      0.0),
+                                                          iconPadding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          color:
+                                                              Color(0xFF6326C0),
+                                                          textStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .titleSmallFamily,
+                                                                    color: Colors
+                                                                        .white,
+                                                                    useGoogleFonts: GoogleFonts
+                                                                            .asMap()
+                                                                        .containsKey(
+                                                                            FlutterFlowTheme.of(context).titleSmallFamily),
+                                                                  ),
+                                                          elevation: 3.0,
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary,
+                                                            width: 2.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                      ),
                                                     ),
                                                   ),
                                                 ],
@@ -953,9 +1078,20 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                               .height *
                                                           0.866,
                                                   decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
+                                                    gradient: LinearGradient(
+                                                      colors: [
+                                                        Color(0xFF6326C0),
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .secondary
+                                                      ],
+                                                      stops: [0.0, 1.0],
+                                                      begin:
+                                                          AlignmentDirectional(
+                                                              0.0, -1.0),
+                                                      end: AlignmentDirectional(
+                                                          0, 1.0),
+                                                    ),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             20.0),
@@ -1016,8 +1152,6 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                           ],
                                                           controller: _model
                                                               .tabBarController2,
-                                                          onTap: (value) =>
-                                                              setState(() {}),
                                                         ),
                                                       ),
                                                       Expanded(
@@ -1028,7 +1162,8 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                             Align(
                                                               alignment:
                                                                   AlignmentDirectional(
-                                                                      0.0, 0.0),
+                                                                      0.00,
+                                                                      0.00),
                                                               child: Column(
                                                                 mainAxisSize:
                                                                     MainAxisSize
@@ -1043,8 +1178,8 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                                   Align(
                                                                     alignment:
                                                                         AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0),
+                                                                            0.00,
+                                                                            0.00),
                                                                     child:
                                                                         Padding(
                                                                       padding: EdgeInsetsDirectional.fromSTEB(
@@ -1178,7 +1313,7 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                                         children: [
                                                                           Align(
                                                                             alignment:
-                                                                                AlignmentDirectional(0.0, 0.0),
+                                                                                AlignmentDirectional(0.00, 0.00),
                                                                             child:
                                                                                 Icon(
                                                                               Icons.add_circle,
@@ -1189,7 +1324,7 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                                           if (_model.uploadedvid ==
                                                                               'True')
                                                                             Align(
-                                                                              alignment: AlignmentDirectional(0.0, 0.0),
+                                                                              alignment: AlignmentDirectional(0.00, 0.00),
                                                                               child: FlutterFlowVideoPlayer(
                                                                                 path: _model.uploadedFileUrl2,
                                                                                 videoType: VideoType.network,
@@ -1207,8 +1342,8 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                                   Align(
                                                                     alignment:
                                                                         AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0),
+                                                                            0.00,
+                                                                            0.00),
                                                                     child:
                                                                         Padding(
                                                                       padding: EdgeInsetsDirectional.fromSTEB(
@@ -1235,7 +1370,7 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                                               MainAxisSize.max,
                                                                           children: [
                                                                             Align(
-                                                                              alignment: AlignmentDirectional(0.0, -1.0),
+                                                                              alignment: AlignmentDirectional(0.00, -1.00),
                                                                               child: Text(
                                                                                 'It can take up to 10 secs for your video to load.\nGo buy an LLC and meditate',
                                                                                 textAlign: TextAlign.center,
@@ -1253,91 +1388,14 @@ class _PostWidgetState extends State<PostWidget> with TickerProviderStateMixin {
                                                                       ),
                                                                     ),
                                                                   ),
-                                                                  Align(
-                                                                    alignment:
-                                                                        AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0),
-                                                                    child:
-                                                                        Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          5.0,
-                                                                          0.0,
-                                                                          20.0),
-                                                                      child:
-                                                                          FFButtonWidget(
-                                                                        onPressed:
-                                                                            () async {
-                                                                          context
-                                                                              .pushNamed(
-                                                                            'Captions',
-                                                                            extra: <String,
-                                                                                dynamic>{
-                                                                              kTransitionInfoKey: TransitionInfo(
-                                                                                hasTransition: true,
-                                                                                transitionType: PageTransitionType.leftToRight,
-                                                                                duration: Duration(milliseconds: 2000),
-                                                                              ),
-                                                                            },
-                                                                          );
-                                                                        },
-                                                                        text:
-                                                                            'Next',
-                                                                        icon:
-                                                                            Icon(
-                                                                          Icons
-                                                                              .double_arrow,
-                                                                          size:
-                                                                              15.0,
-                                                                        ),
-                                                                        options:
-                                                                            FFButtonOptions(
-                                                                          width:
-                                                                              140.0,
-                                                                          height:
-                                                                              50.0,
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              20.0,
-                                                                              0.0,
-                                                                              24.0,
-                                                                              0.0),
-                                                                          iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0.0,
-                                                                              0.0,
-                                                                              0.0,
-                                                                              0.0),
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).alternate,
-                                                                          textStyle: FlutterFlowTheme.of(context)
-                                                                              .titleSmall
-                                                                              .override(
-                                                                                fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
-                                                                                color: Colors.white,
-                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
-                                                                              ),
-                                                                          elevation:
-                                                                              3.0,
-                                                                          borderSide:
-                                                                              BorderSide(
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primary,
-                                                                            width:
-                                                                                2.0,
-                                                                          ),
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(8.0),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
                                                                 ],
                                                               ),
                                                             ),
                                                             Align(
                                                               alignment:
                                                                   AlignmentDirectional(
-                                                                      0.0, 0.0),
+                                                                      0.00,
+                                                                      0.00),
                                                               child:
                                                                   wrapWithModel(
                                                                 model: _model

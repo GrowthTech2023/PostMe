@@ -113,7 +113,12 @@ class ParameterData {
 final parametersBuilderMap =
     <String, Future<ParameterData> Function(Map<String, dynamic>)>{
   'Post': ParameterData.none(),
-  'Connect': ParameterData.none(),
+  'Connect': (data) async => ParameterData(
+        allParams: {
+          'profileSetsref':
+              getParameter<DocumentReference>(data, 'profileSetsref'),
+        },
+      ),
   'loginpage': ParameterData.none(),
   'SuccessPOST': ParameterData.none(),
   'managesubscription': ParameterData.none(),

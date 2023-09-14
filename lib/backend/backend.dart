@@ -10,6 +10,7 @@ import 'schema/videos_record.dart';
 import 'schema/connected_accounts_record.dart';
 import 'schema/subscription_record.dart';
 import 'schema/imageposts_record.dart';
+import 'schema/profile_sets_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart';
@@ -22,6 +23,7 @@ export 'schema/videos_record.dart';
 export 'schema/connected_accounts_record.dart';
 export 'schema/subscription_record.dart';
 export 'schema/imageposts_record.dart';
+export 'schema/profile_sets_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -211,6 +213,46 @@ Future<List<ImagepostsRecord>> queryImagepostsRecordOnce({
       singleRecord: singleRecord,
     );
 
+/// Functions to query ProfileSetsRecords (as a Stream and as a Future).
+Future<int> queryProfileSetsRecordCount({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      ProfileSetsRecord.collection(parent),
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<ProfileSetsRecord>> queryProfileSetsRecord({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      ProfileSetsRecord.collection(parent),
+      ProfileSetsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<ProfileSetsRecord>> queryProfileSetsRecordOnce({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      ProfileSetsRecord.collection(parent),
+      ProfileSetsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
 Future<int> queryCollectionCount(
   Query collection, {
   Query Function(Query)? queryBuilder,
@@ -348,7 +390,8 @@ Future maybeCreateUser(User user) async {
 
   final userData = createUsersRecordData(
     email: user.email,
-    displayName: user.displayName,
+    displayName:
+        user.displayName ?? FirebaseAuth.instance.currentUser?.displayName,
     photoUrl: user.photoURL,
     uid: user.uid,
     phoneNumber: user.phoneNumber,
